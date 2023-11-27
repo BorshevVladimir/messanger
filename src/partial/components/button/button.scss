@@ -1,0 +1,30 @@
+@import "/src/utils/variables";
+
+button {
+	background-color: $blue-color;
+	padding: 10px 30px;
+	color: $white-color;
+	border-radius: $border-radius;
+	border: none;
+	cursor: pointer;
+	font-size: 14px;
+	font-weight: 600;
+	font-family: inherit;
+
+	&:hover {
+		opacity: 0.8;
+	}
+
+	// Модификаторы
+	&_danger {
+		background-color: $red-color;
+	}
+
+	&_success {
+		background-color: $green-color;
+	}
+
+	&_small {
+		background-color: $green-color;
+	}
+}

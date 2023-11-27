@@ -1,0 +1,25 @@
+@import "/src/utils/variables";
+
+.form-field {
+	display: flex;
+	flex-direction: column;
+
+	&__input {
+		margin-bottom: 4px;
+	}
+
+	&__label {
+		display: block;
+		color: $black-color;
+		font-size: 14px;
+		font-style: normal;
+		font-weight: 700;
+		margin-bottom: 7px;
+	}
+
+	&__error {
+		color: $red-color;
+		font-size: 10px;
+		font-weight: 300;
+	}
+}

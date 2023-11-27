@@ -1,0 +1,16 @@
+{{#> layout/card-page-layout/card-page-layout title="Авторизация"}}
+<link rel="stylesheet" href="/src/pages/login/login.scss" />
+<form class="login-form">
+	{{> components/form-input/form-input label="Логин" placeholder="Введите логин" classes="login-form__item" name="login"
+	}}
+	{{>components/form-input/form-input label="Пароль" placeholder="Введите пароль" type="password"
+	classes="login-form__item"
+	name="password"}}
+	<div class="login-form__item form-buttons">
+		{{> components/button/button title="Войти"}}
+		{{#> components/link/link href="/src/pages/registration/registration.html" }}
+		Нет аккаунта?
+		{{/ components/link/link }}
+	</div>
+</form>
+{{/ layout/card-page-layout/card-page-layout }}

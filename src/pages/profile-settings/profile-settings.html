@@ -1,0 +1,25 @@
+{{#> layout/card-page-layout/card-page-layout title="Настройка профиля"}}
+<link rel="stylesheet" href="/src/pages/profile-settings/profile-settings.scss" />
+<form class="user-settings-form">
+	<div class="user-settings-form__avatar">
+		{{#> components/form-file/form-file name="avatar" accept="image/png, image/jpeg" }}
+		{{>components/ avatar/avatar big=true src="https://allods.mail.ru/forums/image.php?u=309803&dateline=1478711553" }}
+		{{/ components/form-file/form-file }}
+	</div>
+	{{> components/form-input/form-input label="Почта" placeholder="Введите электронную почту" type="email"
+	classes="user-settings-form__item" name="email" }}
+	{{> components/form-input/form-input label="Логин" placeholder="Введите логин" classes="user-settings-form__item" name="login" }}
+	{{> components/form-input/form-input label="Имя" placeholder="Введите имя" classes="user-settings-form__item" name="first_name"
+	}}
+	{{> components/form-input/form-input label="Фамилия" placeholder="Введите фамилию" classes="user-settings-form__item"
+	name="second_name" }}
+	{{> components/form-input/form-input label="Телефон" placeholder="Введите телефон" type="tel" classes="user-settings-form__item"
+	name="phone" }}
+	<div class="settings-form__item form-buttons">
+		{{> components/button/button title="Сохранить"}}
+		{{#> components/link/link href="/" }}
+		Назад
+		{{/ components/link/link }}
+</form>
+</div>
+{{/ layout/card-page-layout/card-page-layout }}

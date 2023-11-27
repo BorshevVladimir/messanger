@@ -1,0 +1,17 @@
+@import "/src/utils/variables";
+
+.badge {
+	width: 24px;
+	height: 24px;
+	background-color: $blue-color;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	&__content {
+		color: $white-color;
+		font-size: 10px;
+		font-weight: 700;
+	}
+}
