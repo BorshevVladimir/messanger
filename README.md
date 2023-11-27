@@ -2,14 +2,17 @@
 
 Ссылка на макет интерфейса в Figma: [Макет](https://www.figma.com/file/5Gq3kMKYL4bYdGCFv5cZ9v/Messanger?type=design&node-id=0%3A1&mode=design&t=YcjEqpvX1gQwcTtt-1)
 
+## Адрес прилоежния на Netlify
+[Ссылка](https://exquisite-sherbet-c8f147.netlify.app/)
+
 ## Ссылки на отдельные страницы интерфейса:
-- [Авторизация](./login.html)
-- [Регистрация](./registration.html)
-- [Профиль пользователя](./profile-settings)
-- [Смена пароля](./profile-change-password)
-- [Ошибка 404](./404.html)
-- [Ошибка 500](./500.html)
-- [Чат](./chat.html)
+- [Авторизация](https://exquisite-sherbet-c8f147.netlify.app/src/pages/login/login)
+- [Регистрация](https://exquisite-sherbet-c8f147.netlify.app/src/pages/registration/registration)
+- [Профиль пользователя](https://exquisite-sherbet-c8f147.netlify.app/src/pages/profile-settings/profile-settings)
+- [Смена пароля](https://exquisite-sherbet-c8f147.netlify.app/src/pages/profile-change-password/profile-change-password)
+- [Ошибка 404](https://exquisite-sherbet-c8f147.netlify.app/src/pages/404/404)
+- [Ошибка 500](https://exquisite-sherbet-c8f147.netlify.app/src/pages/500/500)
+- [Чат](https://exquisite-sherbet-c8f147.netlify.app/src/pages/chat/chat)
 
 ## Используемые технологии
 ![image](https://img.shields.io/badge/Node%20js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
@@ -22,7 +25,7 @@
 
 - Клонировать репозиторий:
 ```shell
-git clone ...
+git clone https://github.com/BorshevVladimir/messanger
 cd messanger
 ```
 
