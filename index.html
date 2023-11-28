@@ -10,34 +10,18 @@
 
 <body>
 	<main>
-		<div class="demo-links">
-			{{#> components/link/link href="/src/pages/login/login.html" }}
-			Авторизация
-			{{/ components/link/link }}
-
-			{{#> components/link/link href="/src/pages/registration/registration.html" }}
-			Регистрация
-			{{/ components/link/link}}
-
-			{{#> components/link/link href="/src/pages/profile-settings/profile-settings.html" }}
-			Профиль пользователя
-			{{/ components/link/link}}
-
-			{{#> components/link/link href="/src/pages/profile-change-password/profile-change-password.html" }}
-			Смена пароля
-			{{/ components/link/link}}
-
-			{{#> components/link/link href="/src/pages/404/404.html" }}
-			Ошибка 404
-			{{/ components/link/link}}
-
-			{{#> components/link/link href="/src/pages/500/500.html" }}
-			Ошибка 500
-			{{/ components/link/link}}
-
-			{{#> components/link/link href="/src/pages/chat/chat.html" }}
-			Чат
-			{{/ components/link/link}}
+		<div class="page-links">
+			<nav class="menu">
+				<ul class="menu__list">
+					{{#each pages}}
+						<li class="menu__item">
+							{{#> components/link/link href=url }}
+							{{ title }}
+							{{/ components/link/link }}
+						</li>
+					{{/each }}
+				</ul>
+			</nav>
 		</div>
 	</main>
 </body>
