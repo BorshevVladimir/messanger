@@ -1,0 +1,16 @@
+@import '/src/utils/variables';
+
+// TODO: Добавить input с иконкой
+.input {
+	background: $white-color;
+	border-radius: $border-radius;
+	padding: 15px 22px;
+	border: 1px solid $gray-color;
+	outline: none;
+	color: $black-color;
+	font-family: inherit;
+}
+
+.input:disabled {
+	background-color: $dark-gray-color;
+}

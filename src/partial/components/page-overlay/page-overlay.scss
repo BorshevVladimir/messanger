@@ -1,0 +1,9 @@
+@import "/src/utils/variables";
+
+.page-overlay {
+	height: 100vh;
+	background-color: $light-gray-color;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	}
