@@ -14,10 +14,11 @@
     "noEmit": true,
 
     /* Linting */
-    "strict": true,
+    "strict": true, // Включает в себя noImplicitAny и strictNullChecks
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+		"sourceMap": true
   },
   "include": ["src"]
 }
