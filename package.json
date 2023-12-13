@@ -5,12 +5,20 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
-		"start": "npm run build && node server/app.js",
+    "build": "tsc --noEmit && vite build",
+    "start": "npm run build && node server/app.js",
+    "lint": "eslint . --ext .ts",
+		"stylelint": "npx stylelint \"**/*.scss\"",
+		"type-check": "tsc --noEmit",
     "preview": "vite preview"
   },
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^6.14.0",
+    "@typescript-eslint/parser": "^6.14.0",
+    "eslint": "^8.55.0",
     "sass": "^1.69.5",
+    "stylelint": "^16.0.2",
+    "stylelint-config-standard-scss": "^12.0.0",
     "typescript": "^5.2.2",
     "vite": "^5.0.0",
     "vite-plugin-handlebars": "^1.6.0"
