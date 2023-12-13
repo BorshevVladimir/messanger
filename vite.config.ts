@@ -1,6 +1,7 @@
 import { defineConfig, type Plugin } from 'vite'
 import { resolve } from 'path'
 import handlebars from 'vite-plugin-handlebars'
+import { vitePluginHandlebarsPrecompile } from './vite-plugin-handlebars-precompile'
 
 const pages: { title: string; name: string }[] = [
 	{
@@ -36,13 +37,15 @@ export default defineConfig({
 			partialDirectory: resolve(__dirname, 'src/partial'),
 			context: { pages: pagesWithUrls },
 		}) as unknown as Plugin,
+		vitePluginHandlebarsPrecompile(),
 	],
 
 	build: {
 		rollupOptions: {
 			input: {
 				index: resolve(__dirname, 'index.html'),
-				...pagePaths },
+				...pagePaths,
+			},
 		},
 	},
 })
