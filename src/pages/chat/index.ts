@@ -39,7 +39,7 @@ export class ChatPage extends Block {
 			attachHandle: () => {
 				this.refs['attach-block'].showToggle()
 			},
-			handleUserPageClick: () => {
+			userPageClickHandle: () => {
 				this.refs['settings-overlay'].show()
 			},
 			closeOverlayHandle: () => {
