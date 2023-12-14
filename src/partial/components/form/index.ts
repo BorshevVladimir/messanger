@@ -1,6 +1,5 @@
 import { Block } from '../../../utils/Block'
 import template from './form.hbs'
-import './form.scss'
 
 type FormProps = {
 	onSubmit: () => void
