@@ -19,6 +19,7 @@ import { AttachBlock } from './partial/components/attach-block'
 import { SettingsOverlay } from './partial/components/settings-overlay'
 import { PopupChatUsers } from './partial/components/popup-chat-users'
 import { PopupAddUser } from './partial/components/popup-add-user'
+import { PopupConfirmDelete } from './partial/components/popup-confirm-delete'
 
 registerComponent('Button', Button)
 registerComponent('Input', Input)
@@ -38,5 +39,6 @@ registerComponent('AttachBlock', AttachBlock)
 registerComponent('SettingsOverlay', SettingsOverlay)
 registerComponent('PopupChatUsers', PopupChatUsers)
 registerComponent('PopupAddUser', PopupAddUser)
+registerComponent('PopupConfirmDelete', PopupConfirmDelete)
 
 renderDOM('chat')

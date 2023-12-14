@@ -44,9 +44,10 @@
 					<i class="fa-solid fa-users"></i>
 				{{/CircleButton}}
 				{{{ PopupChatUsers users=popupChatUsers ref='popup-chat-users' }}}
-				{{#CircleButton danger=true}}
+				{{#CircleButton danger=true onClick=deleteChatHandle }}
 					<i class="fa-solid fa-xmark"></i>
 				{{/CircleButton}}
+				{{{ PopupConfirmDelete title="Действительно удалить ?" ref='popup-delete-confirm' }}}
 			</div>
 		</div>
 
