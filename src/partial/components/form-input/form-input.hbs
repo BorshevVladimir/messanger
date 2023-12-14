@@ -1,8 +1,9 @@
-<link rel="stylesheet" href="/src/partial/components/form-input/form-input.scss" />
 <div class="form-field {{classes}}">
-	<label for="{{#if name}}{{name}}{{else}}name{{/if}}" class="form-field__label">
+	<label for="{{name}}" class="form-field__label">
 		{{#if label}}{{label}}{{else}}Подпись к текстовому полю{{/if}}
 	</label>
-	{{> components/input/input classes="form-field__input" }}
-	<span class="form-field__error">{{#if error}}{{error}}{{else}}Текст ошибки{{/if}}</span>
+	{{{ Input classes="form-field__input" name=name type=type placeholder=placeholder onBlur=onInputBlur value=value validator=validator }}}
+	{{#Span ref='error' classes='form-field__error' }}
+		{{error}}
+	{{/Span}}
 </div>

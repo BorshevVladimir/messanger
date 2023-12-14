@@ -1,0 +1,27 @@
+@import '/src/utils/variables';
+
+.circle-button {
+	border-radius: 50%;
+	color: white;
+	background-color: $blue-color;
+	height: 37px;
+	width: 37px;
+	border: none;
+
+	&_dark {
+		background-color: $black-color;
+	}
+
+	&_danger {
+		background-color: $red-color;
+	}
+
+	&_success {
+		background-color: $green-color;
+	}
+
+	&:hover {
+		opacity: 0.7;
+		cursor: pointer;
+	}
+}

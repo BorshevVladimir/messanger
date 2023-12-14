@@ -1,20 +1,22 @@
-<link rel="stylesheet" href="/src/partial/components/chat-user/chat-user.scss" />
+<div class='chat-users'>
+	<div class='chat-user'>
+		{{{Avatar src=avatarSrc alt=avatarAlt}}}
 
-<div class="chat-user">
-	{{> avatar/avatar src="{{ src }}" classes='chat-user__avatar'}}
+		<div class='chat-user__text'>
+			<div class='chat-user__name'>
+				{{name}}
+			</div>
 
-	<div class="message-info">
-		<div class="chat-user__name message-info__user-name">
-			Иван Иванов
+			<div class='chat-user__message'>
+				{{lastMessage}}
+			</div>
 		</div>
 
-		<div class="chat-user__message message-info__text">
-			Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст 
+		<div class='chat-user__statistic'>
+			<span class='last-message-time'>
+				{{lastMessageTime}}
+			</span>
+			{{{Badge text=messageCount}}}
 		</div>
-	</div>
-
-	<div class="chat-user__info message-statistics">
-		<span class="message-statistics__time">14:00</span>
-		{{> badge/badge classes='message-statistics__count' text=15 }}
 	</div>
 </div>

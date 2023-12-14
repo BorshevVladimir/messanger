@@ -1,9 +1,7 @@
-<link rel="stylesheet" href="/src/partial/components/error-page-content/error-page-content.scss" />
-
-<div class="error-content">
-	<h1 class="error-content__title">{{title}}</h1>
-	<p class="error-content__description">{{description}}</p>
-	{{#> components/link/link href=href }}
+<div class='error-content'>
+	<h1 class='error-content__title'>{{title}}</h1>
+	<p class='error-content__description'>{{description}}</p>
+	{{#Link href=href}}
 		{{link-text}}
-	{{/ components/link/link}}
-</div> 
+	{{/Link}}
+</div>
