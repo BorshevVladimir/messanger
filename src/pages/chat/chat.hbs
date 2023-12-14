@@ -38,9 +38,10 @@
 			</div>
 
 			<div class="chat-actions">
-				{{#CircleButton dark=true}}
+				{{#CircleButton dark=true onClick=togglePopupUsersHandle }}
 					<i class="fa-solid fa-users"></i>
 				{{/CircleButton}}
+				{{{ PopupChatUsers users=popupChatUsers ref='popup-chat-users' }}}
 				{{#CircleButton danger=true}}
 					<i class="fa-solid fa-xmark"></i>
 				{{/CircleButton}}

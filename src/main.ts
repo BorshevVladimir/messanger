@@ -17,6 +17,7 @@ import { FormFile } from './partial/components/form-file'
 import { Span } from './partial/components/span'
 import { AttachBlock } from './partial/components/attach-block'
 import { SettingsOverlay } from './partial/components/settings-overlay'
+import { PopupChatUsers } from './partial/components/popup-chat-users'
 
 registerComponent('Button', Button)
 registerComponent('Input', Input)
@@ -34,5 +35,6 @@ registerComponent('FormFile', FormFile)
 registerComponent('Span', Span)
 registerComponent('AttachBlock', AttachBlock)
 registerComponent('SettingsOverlay', SettingsOverlay)
+registerComponent('PopupChatUsers', PopupChatUsers)
 
 renderDOM('main')
