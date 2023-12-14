@@ -18,6 +18,7 @@ import { Span } from './partial/components/span'
 import { AttachBlock } from './partial/components/attach-block'
 import { SettingsOverlay } from './partial/components/settings-overlay'
 import { PopupChatUsers } from './partial/components/popup-chat-users'
+import { PopupAddUser } from './partial/components/popup-add-user'
 
 registerComponent('Button', Button)
 registerComponent('Input', Input)
@@ -36,5 +37,6 @@ registerComponent('Span', Span)
 registerComponent('AttachBlock', AttachBlock)
 registerComponent('SettingsOverlay', SettingsOverlay)
 registerComponent('PopupChatUsers', PopupChatUsers)
+registerComponent('PopupAddUser', PopupAddUser)
 
-renderDOM('main')
+renderDOM('chat')

@@ -10,6 +10,7 @@
 	background-color: $white-color;
 	border-right: 1px solid $gray-color;
 	padding: 20px;
+	z-index: 100;
 
 	&__actions {
 		margin-top: 35px;

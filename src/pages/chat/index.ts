@@ -47,6 +47,9 @@ export class ChatPage extends Block {
 			},
 			togglePopupUsersHandle: () => {
 				this.refs['popup-chat-users'].showToggle()
+			},
+			addUserHandle: () => {
+				this.refs['popup-add-user'].showToggle()
 			}
 		}
 		)
