@@ -1,23 +1,10 @@
 <main class='chat-main-wrapper'>
 
-	<div class="settings-overlay">
-		<div class="settings-overlay__user overlay-user">
-			{{{ Avatar big=true src="https://images.unsplash.com/photo-1544465544-1b71aee9dfa3?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHBob3RvfGVufDB8fDB8fHww" }}}
-			<span class="overlay-user__name">
-				Татьяна Иванова
-			</span>
-		</div>
-
-		<div class="settings-overlay__actions">
-			{{{Button title="Изменить данные"}}}
-			{{{Button title="Изменить пароль"}}}
-			{{{Button danger=true title="Выйти"}}}
-		</div>
-	</div>
+	{{{ SettingsOverlay ref="settings-overlay" username=user.name imgSrc=user.imgSrc closeOverlayHandle=closeOverlayHandle }}}
 
 	<div class='chat-left-column'>
 		<div class='chat-search'>
-			{{#CircleButton dark=true}}
+			{{#CircleButton dark=true onClick=handleUserPageClick }}
 				<i class='fa-solid fa-user-gear'></i>
 			{{/CircleButton}}
 			{{{Input classes="chat-search__input" placeholder='Поиск'}}}

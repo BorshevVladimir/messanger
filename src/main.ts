@@ -16,6 +16,7 @@ import { Form } from './partial/components/form'
 import { FormFile } from './partial/components/form-file'
 import { Span } from './partial/components/span'
 import { AttachBlock } from './partial/components/attach-block'
+import { SettingsOverlay } from './partial/components/settings-overlay'
 
 registerComponent('Button', Button)
 registerComponent('Input', Input)
@@ -32,5 +33,6 @@ registerComponent('Form', Form)
 registerComponent('FormFile', FormFile)
 registerComponent('Span', Span)
 registerComponent('AttachBlock', AttachBlock)
+registerComponent('SettingsOverlay', SettingsOverlay)
 
 renderDOM('main')

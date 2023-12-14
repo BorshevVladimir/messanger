@@ -1,0 +1,16 @@
+	<div class="settings-overlay">
+		{{#CircleButton classes="settings-overlay__close" onClick=closeOverlayHandle dark=true}}<i class="fa-solid fa-xmark"></i>{{/CircleButton}}
+
+		<div class="settings-overlay__user overlay-user">
+			{{{ Avatar big=true src=imgSrc }}}
+			<span class="overlay-user__name">
+				{{username}}
+			</span>
+		</div>
+
+		<div class="settings-overlay__actions">
+			{{#Button onClick=changeUserDataHandle }} Изменить данные {{/Button}}
+			{{#Button onClick=changeUserPasswordHandle }} Изменить пароль {{/Button}}
+			{{#Button danger=true onClick=changeExitHandle }} Выйти {{/Button}}
+		</div>
+	</div>
