@@ -14,7 +14,8 @@
     "noEmit": true,
 
     /* Linting */
-    "strict": true, // Включает в себя noImplicitAny и strictNullChecks
+		"noImplicitAny": true,
+		"strictNullChecks": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
