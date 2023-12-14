@@ -41,4 +41,4 @@ registerComponent('PopupChatUsers', PopupChatUsers)
 registerComponent('PopupAddUser', PopupAddUser)
 registerComponent('PopupConfirmDelete', PopupConfirmDelete)
 
-renderDOM('chat')
+renderDOM('main')
