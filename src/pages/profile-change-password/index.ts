@@ -7,17 +7,25 @@ import type { FormInput } from '../../typings/FormInput'
 import { renderDOM } from '../../utils/renderDOM'
 
 const formInputs: Record<string, FormInput> = {
+	old_password: {
+		ref: 'password',
+		label: 'Старый пароль',
+		placeholder: 'Введите старый пароль',
+		error: 'Неподходящий пароль',
+		type: 'password',
+		validator: InputValidator.validatePassword,
+	},
 	password: {
 		ref: 'password',
-		label: 'Пароль',
-		placeholder: 'Введите пароль',
+		label: 'Новый пароль',
+		placeholder: 'Введите новый пароль',
 		error: 'Неподходящий пароль',
 		type: 'password',
 		validator: InputValidator.validatePassword,
 	},
 	password_repeat: {
 		ref: 'password_repeat',
-		label: 'Пароль (еще раз)',
+		label: 'Новый пароль (еще раз)',
 		placeholder: 'Повторите ввод пароля',
 		error: 'Неподходящий пароль',
 		type: 'password',
