@@ -1,11 +1,16 @@
 @import '/src/utils/variables';
 
-.attach {
+.attach-wrapper {
 	display: none;
-	position: fixed;
+	position: absolute;
 	right: 20px;
 	bottom: 60px;
 	width: 200px;
+}
+
+.attach {
+	display: flex;
+	flex-direction: column;
 	background-color: $white-color;
 	padding: 10px;
 	border-radius: $border-radius;

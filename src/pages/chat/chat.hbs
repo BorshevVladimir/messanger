@@ -91,11 +91,10 @@
 			</div>
 		</div>
 
-		{{{ AttachBlock ref="attach-block" }}}
-
 		<div class="messanger">
 			{{{Input classes="messanger__input" placeholder="Введите сообщение" name="message" }}}
 			<div class="messanger__actions">
+			{{{ AttachBlock ref="attach-block" }}}
 			{{#CircleButton success=true onClick=attachHandle }}
 				<i class="fa-solid fa-paperclip"></i>
 			{{/CircleButton}}
