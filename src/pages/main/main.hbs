@@ -1,0 +1,15 @@
+<main>
+	<div class="page-links">
+		<nav class="menu">
+			<ul class="menu__list">
+				{{#each pageWithClickEvents}}
+					<li class="menu__item">
+						{{#Link onClick=this.onClick}}
+							{{this.title}}
+						{{/Link}}
+					</li>
+				{{/each }}
+			</ul>
+		</nav>
+	</div>
+</main>

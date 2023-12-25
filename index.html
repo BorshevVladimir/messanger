@@ -6,24 +6,12 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>Messanger</title>
 	<link rel="stylesheet" href="./src/utils/main.scss">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 
 <body>
-	<main>
-		<div class="page-links">
-			<nav class="menu">
-				<ul class="menu__list">
-					{{#each pages}}
-						<li class="menu__item">
-							{{#> components/link/link href=url }}
-							{{ title }}
-							{{/ components/link/link }}
-						</li>
-					{{/each }}
-				</ul>
-			</nav>
-		</div>
-	</main>
+	<div id="app"></div>
+	<script type="module" src="./src/main.ts"></script>
 </body>
 
 </html>

@@ -5,15 +5,6 @@
 ## Адрес прилоежния на Netlify
 [Ссылка](https://exquisite-sherbet-c8f147.netlify.app/)
 
-## Ссылки на отдельные страницы интерфейса:
-- [Авторизация](https://exquisite-sherbet-c8f147.netlify.app/src/pages/login/login)
-- [Регистрация](https://exquisite-sherbet-c8f147.netlify.app/src/pages/registration/registration)
-- [Профиль пользователя](https://exquisite-sherbet-c8f147.netlify.app/src/pages/profile-settings/profile-settings)
-- [Смена пароля](https://exquisite-sherbet-c8f147.netlify.app/src/pages/profile-change-password/profile-change-password)
-- [Ошибка 404](https://exquisite-sherbet-c8f147.netlify.app/src/pages/404/404)
-- [Ошибка 500](https://exquisite-sherbet-c8f147.netlify.app/src/pages/500/500)
-- [Чат](https://exquisite-sherbet-c8f147.netlify.app/src/pages/chat/chat)
-
 ## Используемые технологии
 ![image](https://img.shields.io/badge/Node%20js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
 ![image](https://img.shields.io/badge/Vite-B73BFE?style=for-the-badge&logo=vite&logoColor=FFD62E)
@@ -40,12 +31,14 @@ npm install
 ```shell
 npm run start
 ```
-
+## Навигация
 После запуска приложение будет доступно по адресу: http://localhost:3000/
+На главной странице содержатся ссылки для перехода между страницами.
+Компоненты для приложения прекомпилирются на этапе сборки. Переход между окнами не вызывает перезагрузуку страницы.
 
 ## Сборка проекта
 Команда для сборки проекта:
 ```shell
 npm run build
 ```
-После выполнения команды сборка будет сохранения в папку dist.
+После выполнения команды сборка будет сохранена в папку dist.

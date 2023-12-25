@@ -1,0 +1,48 @@
+@import '/src/utils/variables';
+
+.attach-wrapper {
+	display: none;
+	position: absolute;
+	right: 20px;
+	bottom: 60px;
+	width: 200px;
+}
+
+.attach {
+	display: flex;
+	flex-direction: column;
+	background-color: $white-color;
+	padding: 10px;
+	border-radius: $border-radius;
+	border: 1px solid $gray-color;
+
+	&__button {
+		display: flex;
+		align-items: center;
+		gap: 11px;
+		padding: 5px;
+		font-family: inherit;
+		border: none;
+		color: $light-blue-color;
+		background: none;
+		border-radius: $border-radius;
+		font-size: 14px;
+		font-weight: 600;
+
+		&:hover {
+			cursor: pointer;
+			background-color: $gray-color;
+		}
+	}
+
+	&__button-icon {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: $white-color;
+		width: 22px;
+		height: 22px;
+		background-color: $light-blue-color;
+		border-radius: 50%;
+	}
+}

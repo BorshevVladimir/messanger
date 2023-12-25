@@ -3,46 +3,39 @@
 .chat-user {
 	display: flex;
 	gap: 13px;
-	background-color: $white-color;
-	border-radius: $border-radius;
 	padding: 10px 15px;
 	border-bottom: 1px solid $gray-color;
+
+	&__text {
+		flex-grow: 1
+	}
+
 	&__name {
-		color: $black-color;
-		font-weight: 700;
-		font-size: 14px;
+		font-size: 14;
+		font-weight: bold;
 	}
 
 	&__message {
+		font-size: 12;
 		color: $dark-gray-color;
+		text-overflow: ellipsis;
+		overflow: hidden !important;
+	}
+
+	&__statistic {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 13px
+	}
+
+	&:hover {
+		background-color: $gray-color;
+		cursor: pointer;
 	}
 }
 
-.message-statistics {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	&__time {
-		margin-bottom: 13px;
-		font-size: 8px;
-		font-weight: 400;
-	}
-
-	&__count {
-	}
-}
-
-.message-info {
-	display: flex;
-	flex-grow: 1;
-	flex-direction: column;
-	&__user-name {
-		color: $black-color;
-		margin-bottom: 7px;
-		font-size: 14px;
-		font-weight: 700;
-	}
-
-	&__text {
-	}
+.last-message-time {
+	font-size: 8px;
+	color: $dark-gray-color;
 }

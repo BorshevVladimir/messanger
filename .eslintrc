@@ -1,0 +1,21 @@
+{
+	"root": true,
+	"extends": [
+		"eslint:recommended",
+		"plugin:@typescript-eslint/eslint-recommended",
+		"plugin:@typescript-eslint/recommended"
+	],
+	"parser": "@typescript-eslint/parser",
+	"rules": {
+		"quotes": ["error", "single"],
+		"no-tabs": "off",
+		"@typescript-eslint/indent": ["error", "tab"],
+		"space-before-function-paren": ["error", "always"],
+		"no-duplicate-imports": "error",
+		"@typescript-eslint/no-explicit-any": "warn",
+		"no-trailing-spaces": "error",
+		"eol-last": ["error", "always"],
+		"semi": ["error", "never"],
+		"@typescript-eslint/no-this-alias": "off"
+	}
+}
