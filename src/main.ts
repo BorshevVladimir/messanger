@@ -1,4 +1,3 @@
-import { renderDOM } from './utils/renderDOM'
 import { registerComponent } from './utils/registerComponent'
 
 import { Button } from './partial/components/button'
@@ -40,5 +39,3 @@ registerComponent('SettingsOverlay', SettingsOverlay)
 registerComponent('PopupChatUsers', PopupChatUsers)
 registerComponent('PopupAddUser', PopupAddUser)
 registerComponent('PopupConfirmDelete', PopupConfirmDelete)
-
-renderDOM('main')
