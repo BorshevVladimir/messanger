@@ -4,7 +4,7 @@ import './profile-settings.scss'
 import { InputValidator } from '../../utils/InputValidator'
 import { formSubmit } from '../../utils/formSubmit'
 import type { FormInput } from '../../typings/FormInput'
-import { renderDOM } from '../../utils/renderDOM'
+import { router } from '../../router/Router'
 
 const formInputs: Record<string, FormInput> = {
 	email: {
@@ -53,9 +53,9 @@ export class ProfileSettingsPage extends Block {
 	constructor () {
 		super({
 			formInputs,
-			goToPage (e: MouseEvent) {
+			goToChatPage (e: MouseEvent) {
 				e.preventDefault()
-				renderDOM('chat')
+				router.go('/messenger')
 			},
 			onSubmit: (e: SubmitEvent) => formSubmit(e, formInputs, this.refs)
 		})

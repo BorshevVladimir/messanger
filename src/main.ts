@@ -1,4 +1,13 @@
 import { registerComponent } from './utils/registerComponent'
+import { router } from './router/Router'
+
+import { Error404Page } from './pages/404'
+import { Error500Page } from './pages/500'
+import { LoginPage } from './pages/login'
+import { RegistrationPage } from './pages/registration'
+import { ChatPage } from './pages/chat'
+import { ProfileSettingsPage } from './pages/profile-settings'
+import { ProfileChangePasswordPage } from './pages/profile-change-password'
 
 import { Button } from './partial/components/button'
 import { Input } from './partial/components/input'
@@ -39,3 +48,14 @@ registerComponent('SettingsOverlay', SettingsOverlay)
 registerComponent('PopupChatUsers', PopupChatUsers)
 registerComponent('PopupAddUser', PopupAddUser)
 registerComponent('PopupConfirmDelete', PopupConfirmDelete)
+
+router
+	.use('/', LoginPage)
+	.use('/sign-up', RegistrationPage)
+	.use('/settings', ProfileSettingsPage)
+	.use('/messenger', ChatPage)
+	.use('/change-password', ProfileChangePasswordPage)
+	.use('/404', Error404Page)
+	.use('/500', Error500Page)
+	.use('/500', Error500Page)
+	.start()

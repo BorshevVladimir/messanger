@@ -1,6 +1,6 @@
 import { Block } from '../../../utils/Block'
-import { renderDOM } from '../../../utils/renderDOM'
 import template from './settings-overlay.hbs'
+import { router } from '../../../router/Router'
 import './settings-overlay.scss'
 
 type SettingsOverlayProps = {
@@ -15,13 +15,13 @@ export class SettingsOverlay extends Block {
 			...props,
 			closeOverlayHandle: props.closeOverlayHandle,
 			changeUserDataHandle: () => {
-				renderDOM('profileSettings')
+				router.go('/settings')
 			},
 			changeUserPasswordHandle: () => {
-				renderDOM('proflieChangePassword')
+				router.go('/change-password')
 			},
 			changeExitHandle: () => {
-				renderDOM('login')
+				router.go('/')
 			}
 		})
 	}

@@ -2,9 +2,10 @@ import { Block } from '../../utils/Block'
 import template from './login.hbs'
 import './login.scss'
 import { InputValidator } from '../../utils/InputValidator'
-import { renderDOM } from '../../utils/renderDOM'
 import type { FormInput } from '../../typings/FormInput'
 import { formSubmit } from '../../utils/formSubmit'
+import { router } from '../../router/Router'
+
 const formInputs: Record<string, FormInput> = {
 	login: {
 		ref: 'login',
@@ -28,9 +29,9 @@ export class LoginPage extends Block {
 	constructor () {
 		super({
 			formInputs,
-			goToPage (e: MouseEvent) {
+			goToRegistrationPage (e: MouseEvent) {
 				e.preventDefault()
-				renderDOM('registration')
+				router.go('/sign-up')
 			},
 			onSubmit: (e: SubmitEvent) => formSubmit(e, formInputs, this.refs)
 		})
