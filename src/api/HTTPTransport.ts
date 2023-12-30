@@ -1,7 +1,7 @@
 type OptionsData = Record<string, unknown>
 
 type Options = {
-	method: METHODS
+	method: Method
 	data?: OptionsData
 	headers?: Record<string, string>
 	timeout?: number
@@ -9,7 +9,7 @@ type Options = {
 
 type OptionsWithoutMethod = Omit<Options, 'method'>
 
-const enum METHODS {
+const enum Method {
 	GET = 'GET',
 	PUT = 'PUT',
 	POST = 'POST',
@@ -21,14 +21,14 @@ function queryStringify (data: OptionsData) {
 	return `?${params.join('&')}`
 }
 
-function request (
+function request<TResponse> (
 	url: string,
-	options: Options = { method: METHODS.GET },
+	options: Options = { method: Method.GET },
 	timeout = 5000
-): Promise<XMLHttpRequest> {
+): Promise<TResponse> {
 	const { method, data = {}, headers = {} } = options
 
-	const isGet = method === METHODS.GET
+	const isGet = method === Method.GET
 
 	return new Promise((resolve, reject) => {
 		const xhr = new XMLHttpRequest()
@@ -42,12 +42,12 @@ function request (
 		xhr.timeout = timeout
 
 		xhr.open(method, isGet && !!data ? `${url}${queryStringify(data)}` : url)
-		xhr.onload = () => resolve(xhr)
+		xhr.onload = () => resolve(xhr.response)
 		xhr.onabort = reject
 		xhr.onerror = reject
 		xhr.ontimeout = reject
 
-		if (method === METHODS.GET || !data) {
+		if (method === Method.GET || !data) {
 			xhr.send()
 		} else {
 			xhr.send(JSON.stringify(data))
@@ -55,20 +55,48 @@ function request (
 	})
 }
 
+type RequestFn = <TResponse = void>(
+	url: string,
+	options?: OptionsWithoutMethod
+) => Promise<TResponse>
+
 export class HTTPTransport {
-	get = (url: string, options: OptionsWithoutMethod) => {
-		return request(url, { ...options, method: METHODS.GET }, options.timeout)
+	static BASE_URL = 'ya-praktikum.tech/api/v2'
+	protected endpoint: string
+
+	constructor (endpoint: string) {
+		this.endpoint = `${HTTPTransport.BASE_URL}${endpoint}`
 	}
 
-	put = (url: string, options: OptionsWithoutMethod) => {
-		return request(url, { ...options, method: METHODS.PUT }, options.timeout)
+	get: RequestFn = (url: string, options?: OptionsWithoutMethod) => {
+		return request(
+			this.endpoint + url,
+			{ ...options, method: Method.GET },
+			options?.timeout
+		)
 	}
 
-	post = (url: string, options: OptionsWithoutMethod) => {
-		return request(url, { ...options, method: METHODS.POST }, options.timeout)
+	put: RequestFn = (url: string, options: OptionsWithoutMethod) => {
+		return request(
+			this.endpoint + url,
+			{ ...options, method: Method.PUT },
+			options.timeout
+		)
 	}
 
-	delete = (url: string, options: OptionsWithoutMethod) => {
-		return request(url, { ...options, method: METHODS.DELETE }, options.timeout)
+	post: RequestFn = (url: string, options?: OptionsWithoutMethod) => {
+		return request(
+			this.endpoint + url,
+			{ ...options, method: Method.POST },
+			options?.timeout
+		)
+	}
+
+	delete: RequestFn = (url: string, options: OptionsWithoutMethod) => {
+		return request(
+			this.endpoint + url,
+			{ ...options, method: Method.DELETE },
+			options.timeout
+		)
 	}
 }
