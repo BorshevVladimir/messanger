@@ -1,19 +1,52 @@
 import type { FormInput } from '../typings/FormInput'
 import type { Block } from './Block'
+import type { PlainObject } from './isObject'
+import type { Validator } from './InputValidator'
 
-export function formSubmit (e: SubmitEvent, formInputs: Record<string, FormInput>, ErrorRefs: Record<string, Block>) {
+
+// FIXME: Из этого метода нужно возрващать данные. + Надо понимать, прошла ли валидация
+export function formSubmit (e: SubmitEvent, formInputs: Record<string, FormInput>, ErrorRefs: Record<string, Block>): boolean {
 	e.preventDefault()
 	const formValues: Record<string, unknown> = {}
 	const formData = new FormData(e.target as HTMLFormElement)
+	let errorsExist = false
 
 	for (const [key, value] of formData.entries()) {
+		console.log(key, value)
 		formValues[key] = value
 		const { validator, ref } = formInputs[key]
 		if (!validator(value.toString())) {
 			ErrorRefs[ref].references['error'].show()
+			errorsExist = true
 		} else {
 			ErrorRefs[ref].references['error'].hide()
 		}
 	}
-	console.log('Заполненные поля формы:', formValues)
+	return errorsExist
+}
+
+export function getFormData (elem: HTMLFormElement): PlainObject {
+	const formValues: PlainObject = {}
+	const formData = new FormData(elem)
+
+	for (const [key, value] of formData.entries()) {
+		formValues[key] = value
+	}
+
+	return formValues
+}
+
+
+// TODO: Implement
+type Rules = { [key: string]: { validator: Validator }}
+export function validate (formValues: PlainObject, rules: Rules) {
+	// const errors: string[] = []
+
+	Object.keys(formValues).forEach(key => {
+		const value = formValues[key] as string
+		if (key in rules) {
+			const res = rules[key].validator(value)
+			console.log(res)
+		}
+	})
 }
