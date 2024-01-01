@@ -1,8 +1,8 @@
-export type PlainObject<T = unknown> = {
+export type Indexed<T = unknown> = {
 	[k in string]: T
 }
 
-export function isPlainObject (value: unknown): value is PlainObject {
+export function isPlainObject (value: unknown): value is Indexed {
 	return (
 		typeof value === 'object' &&
 		value !== null &&

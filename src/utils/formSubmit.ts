@@ -1,6 +1,6 @@
 import type { FormInput } from '../typings/FormInput'
 import type { Block } from './Block'
-import type { PlainObject } from './isObject'
+import type { Indexed } from './isObject'
 import type { Validator } from './InputValidator'
 
 
@@ -25,8 +25,8 @@ export function formSubmit (e: SubmitEvent, formInputs: Record<string, FormInput
 	return errorsExist
 }
 
-export function getFormData (elem: HTMLFormElement): PlainObject {
-	const formValues: PlainObject = {}
+export function getFormData (elem: HTMLFormElement): Indexed {
+	const formValues: Indexed = {}
 	const formData = new FormData(elem)
 
 	for (const [key, value] of formData.entries()) {
@@ -39,7 +39,7 @@ export function getFormData (elem: HTMLFormElement): PlainObject {
 
 // TODO: Implement
 type Rules = { [key: string]: { validator: Validator }}
-export function validate (formValues: PlainObject, rules: Rules) {
+export function validate (formValues: Indexed, rules: Rules) {
 	// const errors: string[] = []
 
 	Object.keys(formValues).forEach(key => {

@@ -1,10 +1,10 @@
-import { isPlainObject, type PlainObject } from './isObject'
+import { isPlainObject, type Indexed } from './isObject'
 
 function set (
-	object: PlainObject | unknown,
+	object: Indexed | unknown,
 	path: string,
 	value: unknown
-): PlainObject | unknown {
+): Indexed | unknown {
 	if (!isPlainObject(object)) {
 		return object
 	}

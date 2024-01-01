@@ -1,13 +1,13 @@
 import { EventBus } from '../utils/EventBus'
 import { set } from '../utils/set'
-import type { PlainObject } from '../utils/isObject'
+import type { Indexed } from '../utils/isObject'
 
 export enum StoreEvents {
 	Updated = 'updated',
 }
 
 class Store extends EventBus {
-	private state: PlainObject = {}
+	private state: Indexed = {}
 
 	public getState () {
 		return this.state
