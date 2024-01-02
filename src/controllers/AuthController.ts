@@ -8,7 +8,7 @@ import { store } from '../store/Store'
 
 import { router } from '../router/Router'
 
-export class AuthController {
+class AuthController {
 	private readonly api: AuthApi = new AuthApi()
 
 	async signin (data: SigninRequestData) {
@@ -36,3 +36,6 @@ export class AuthController {
 		store.set('user', user)
 	}
 }
+
+const authController = new AuthController()
+export { authController }
