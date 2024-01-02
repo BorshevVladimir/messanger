@@ -47,6 +47,10 @@ function request<TResponse> (
 		xhr.onerror = reject
 		xhr.ontimeout = reject
 
+		xhr.setRequestHeader('Content-Type', 'application/json')
+		xhr.withCredentials = true
+		xhr.responseType = 'json'
+
 		if (method === Method.GET || !data) {
 			xhr.send()
 		} else {
@@ -61,7 +65,7 @@ type RequestFn = <TResponse = void>(
 ) => Promise<TResponse>
 
 export class HTTPTransport {
-	static BASE_URL = 'ya-praktikum.tech/api/v2'
+	static BASE_URL = 'https://ya-praktikum.tech/api/v2'
 	protected endpoint: string
 
 	constructor (endpoint: string) {
