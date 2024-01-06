@@ -3,8 +3,10 @@ import template from './registration.hbs'
 import { InputValidator } from '../../utils/InputValidator'
 import type { FormInput } from '../../typings/FormInput'
 import './registration.scss'
-import { formSubmit } from '../../utils/formSubmit'
+import { getFormData } from '../../utils/formSubmit'
 import { router } from '../../router/Router'
+import { authController } from '../../controllers/AuthController'
+import type { SignupRequestData } from '../../api/AuthApi'
 
 const formInputs: Record<string, FormInput> = {
 	email: {
@@ -73,7 +75,11 @@ export class RegistrationPage extends Block {
 				e.preventDefault()
 				router.go('/')
 			},
-			onSubmit: (e: SubmitEvent) => formSubmit(e, formInputs, this.refs)
+			onSubmit: (e: SubmitEvent) => {
+				e.preventDefault()
+				const formData = getFormData(e.target as HTMLFormElement)
+				authController.signup(formData as SignupRequestData)
+			}
 		})
 	}
 
