@@ -35,7 +35,7 @@ export class EventBus implements IEventBus {
 
 	emit (event: EventName, ...args: unknown[]) {
 		if (!this._listeners[event]) {
-			throw new Error(`Нет события: ${event}`)
+			return
 		}
 
 		this._listeners[event].forEach((listener) => {
