@@ -3,8 +3,10 @@ import template from './login.hbs'
 import './login.scss'
 import { InputValidator } from '../../utils/InputValidator'
 import type { FormInput } from '../../typings/FormInput'
-import { formSubmit } from '../../utils/formSubmit'
+import { getFormData } from '../../utils/formSubmit'
 import { router } from '../../router/Router'
+import { authController } from '../../controllers/AuthController'
+import type { SigninRequestData } from '../../api/AuthApi'
 
 const formInputs: Record<string, FormInput> = {
 	login: {
@@ -33,7 +35,11 @@ export class LoginPage extends Block {
 				e.preventDefault()
 				router.go('/sign-up')
 			},
-			onSubmit: (e: SubmitEvent) => formSubmit(e, formInputs, this.refs)
+			onSubmit: (e: SubmitEvent) => {
+				e.preventDefault()
+				const formData = getFormData(e.target as HTMLFormElement)
+				authController.signin(formData as SigninRequestData)
+			}
 		})
 	}
 
