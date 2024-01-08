@@ -42,7 +42,17 @@ function request<TResponse> (
 		xhr.timeout = timeout
 
 		xhr.open(method, isGet && !!data ? `${url}${queryStringify(data)}` : url)
-		xhr.onload = () => resolve(xhr.response)
+
+		xhr.onreadystatechange = () => {
+			if (xhr.readyState === XMLHttpRequest.DONE) {
+				if (xhr.status < 400) {
+					resolve(xhr.response)
+				} else {
+					reject(xhr.response)
+				}
+			}
+		}
+
 		xhr.onabort = reject
 		xhr.onerror = reject
 		xhr.ontimeout = reject
