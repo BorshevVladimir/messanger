@@ -3,6 +3,7 @@ import template from './settings-overlay.hbs'
 import { router } from '../../../router/Router'
 import './settings-overlay.scss'
 import { authController } from '../../../controllers/AuthController'
+import { withStore } from '../../../store/Store'
 
 type SettingsOverlayProps = {
 	username: string
@@ -10,7 +11,7 @@ type SettingsOverlayProps = {
 	closeOverlayHandle: () => void
 }
 
-export class SettingsOverlay extends Block {
+export class SettingsOverlayBase extends Block {
 	constructor (props: SettingsOverlayProps) {
 		super({
 			...props,
@@ -31,3 +32,11 @@ export class SettingsOverlay extends Block {
 		return this.compile(template, this.props)
 	}
 }
+
+const withUser = withStore((state) => ({
+	// FIXME: с бека поле display_name приходит null
+	username: `${ state.user?.first_name } ${ state.user?.second_name }`,
+	imgSrc: state.user?.avatar
+}))
+
+export const SettingsOverlay = withUser(SettingsOverlayBase)

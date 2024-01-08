@@ -3,12 +3,17 @@ import { set } from '../utils/set'
 import type { Indexed } from '../utils/isObject'
 import type { Block } from '../utils/Block'
 import { deepEqual } from '../utils/deepEqual'
+import { UserInfo } from '../api/AuthApi'
 
 export enum StoreEvents {
 	Updated = 'updated',
 }
 
-export function withStore (mapStateToProps: (state: Indexed) => Indexed) {
+type State = {
+	user?: UserInfo
+}
+
+export function withStore (mapStateToProps: (state: State) => Indexed) {
 	return function connect (Component: typeof Block) {
 		return class extends Component {
 			constructor (props: Indexed) {
@@ -31,7 +36,7 @@ export function withStore (mapStateToProps: (state: Indexed) => Indexed) {
 }
 
 class Store extends EventBus {
-	private state: Indexed = {}
+	private state: State = {}
 
 	public getState () {
 		return this.state

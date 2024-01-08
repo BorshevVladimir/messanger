@@ -19,7 +19,7 @@ export type SigninRequestData = {
 	password: 'string'
 }
 
-type UserInfoResponseData = {
+export type UserInfo = {
 	id: UserId
 	first_name: string
 	second_name: string
@@ -45,7 +45,7 @@ export class AuthApi {
 		return this.http.post('/signin', { data: payload })
 	}
 
-	async user (): Promise<UserInfoResponseData> {
+	async user (): Promise<UserInfo> {
 		return this.http.get('/user')
 	}
 
