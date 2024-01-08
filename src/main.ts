@@ -28,6 +28,7 @@ import { SettingsOverlay } from './partial/components/settings-overlay'
 import { PopupChatUsers } from './partial/components/popup-chat-users'
 import { PopupAddUser } from './partial/components/popup-add-user'
 import { PopupConfirmDelete } from './partial/components/popup-confirm-delete'
+import { authController } from './controllers/AuthController'
 
 registerComponent('Button', Button)
 registerComponent('Input', Input)
@@ -49,13 +50,47 @@ registerComponent('PopupChatUsers', PopupChatUsers)
 registerComponent('PopupAddUser', PopupAddUser)
 registerComponent('PopupConfirmDelete', PopupConfirmDelete)
 
+enum Routes {
+	Index = '/',
+	Register = '/sign-up',
+	ProfileSettings = '/settings',
+	Messenger = '/messenger',
+	ChangePassword = '/change-password',
+	Error404 = '/404',
+	Error500 = '/500',
+}
+
 router
-	.use('/', LoginPage)
-	.use('/sign-up', RegistrationPage)
-	.use('/settings', ProfileSettingsPage)
-	.use('/messenger', ChatPage)
-	.use('/change-password', ProfileChangePasswordPage)
-	.use('/404', Error404Page)
-	.use('/500', Error500Page)
-	.use('/500', Error500Page)
-	.start()
+	.use(Routes.Index, LoginPage)
+	.use(Routes.Register, RegistrationPage)
+	.use(Routes.ProfileSettings, ProfileSettingsPage)
+	.use(Routes.Messenger, ChatPage)
+	.use(Routes.ChangePassword, ProfileChangePasswordPage)
+	.use(Routes.Error404, Error404Page)
+	.use(Routes.Error500, Error500Page)
+
+window.addEventListener('DOMContentLoaded', async () => {
+	let isProtectedRoute = true
+
+	switch(window.location.pathname) {
+		case Routes.Index:
+		case Routes.Register:
+			isProtectedRoute = false
+			break
+	}
+
+	try {
+		await authController.fetchUser()
+		router.start()
+
+		if (!isProtectedRoute) {
+			router.go(Routes.Messenger)
+		}
+	} catch (err) {
+		router.start()
+
+		if(isProtectedRoute) {
+			router.go(Routes.Index)
+		}
+	}
+})
