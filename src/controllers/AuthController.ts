@@ -35,6 +35,15 @@ class AuthController {
 		const user = await this.api.user()
 		store.set('user', user)
 	}
+
+	async logout () {
+		try {
+			this.api.logout()
+			router.go('/')
+		} catch(err) {
+			console.error(err)
+		}
+	}
 }
 
 const authController = new AuthController()

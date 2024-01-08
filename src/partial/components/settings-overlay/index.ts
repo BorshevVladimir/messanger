@@ -2,6 +2,7 @@ import { Block } from '../../../utils/Block'
 import template from './settings-overlay.hbs'
 import { router } from '../../../router/Router'
 import './settings-overlay.scss'
+import { authController } from '../../../controllers/AuthController'
 
 type SettingsOverlayProps = {
 	username: string
@@ -20,8 +21,8 @@ export class SettingsOverlay extends Block {
 			changeUserPasswordHandle: () => {
 				router.go('/change-password')
 			},
-			changeExitHandle: () => {
-				router.go('/')
+			logout: () => {
+				authController.logout()
 			}
 		})
 	}
