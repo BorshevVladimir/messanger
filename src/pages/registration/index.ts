@@ -1,14 +1,14 @@
 import { Block } from '../../utils/Block'
 import template from './registration.hbs'
 import { InputValidator } from '../../utils/InputValidator'
-import type { FormInput } from '../../typings/FormInput'
+import type { FormTextField } from '../../typings/FormTextField'
 import './registration.scss'
 import { getFormData } from '../../utils/formSubmit'
 import { router } from '../../router/Router'
 import { authController } from '../../controllers/AuthController'
 import type { SignupRequestData } from '../../api/AuthApi'
 
-const formInputs: Record<string, FormInput> = {
+const formInputs: Record<string, FormTextField> = {
 	email: {
 		ref: 'email',
 		label: 'Почта',

@@ -1,4 +1,4 @@
-export type FormInput = {
+export type FormTextField = {
 	label: string
 	error: string
 	placeholder?: string

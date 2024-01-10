@@ -1,11 +1,11 @@
-import type { FormInput } from '../typings/FormInput'
+import type {  FormTextField } from '../typings/FormTextField'
 import type { Block } from './Block'
 import type { Indexed } from './isObject'
 import type { Validator } from './InputValidator'
 
 
 // FIXME: Из этого метода нужно возрващать данные. + Надо понимать, прошла ли валидация
-export function formSubmit (e: SubmitEvent, formInputs: Record<string, FormInput>, ErrorRefs: Record<string, Block>): boolean {
+export function formSubmit (e: SubmitEvent, formInputs: Record<string, FormTextField>, ErrorRefs: Record<string, Block>): boolean {
 	e.preventDefault()
 	const formValues: Record<string, unknown> = {}
 	const formData = new FormData(e.target as HTMLFormElement)

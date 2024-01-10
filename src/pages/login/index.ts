@@ -2,13 +2,13 @@ import { Block } from '../../utils/Block'
 import template from './login.hbs'
 import './login.scss'
 import { InputValidator } from '../../utils/InputValidator'
-import type { FormInput } from '../../typings/FormInput'
+import type { FormTextField } from '../../typings/FormTextField'
 import { getFormData } from '../../utils/formSubmit'
 import { router } from '../../router/Router'
 import { authController } from '../../controllers/AuthController'
 import type { SigninRequestData } from '../../api/AuthApi'
 
-const formInputs: Record<string, FormInput> = {
+const formInputs: Record<string, FormTextField> = {
 	login: {
 		ref: 'login',
 		label: 'Логин',
