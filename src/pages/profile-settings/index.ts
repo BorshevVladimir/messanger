@@ -5,6 +5,7 @@ import { InputValidator } from '../../utils/InputValidator'
 import { formSubmit } from '../../utils/formSubmit'
 import type { FormTextField } from '../../typings/FormTextField'
 import { router } from '../../router/Router'
+import { withStore } from '../../store/Store'
 
 const formInputs: Record<string, FormTextField> = {
 	email: {
@@ -49,10 +50,12 @@ const formInputs: Record<string, FormTextField> = {
 	},
 }
 
-export class ProfileSettingsPage extends Block {
-	constructor () {
-		super({
-			formInputs,
+class ProfileSettingsPageBase extends Block {
+	init () {
+		const inputFormWithValues = Object.keys(formInputs).map(key => ({...formInputs[key], value: this.props[key]}))
+
+		this.setProps({
+			formInputs: inputFormWithValues,
 			goToChatPage (e: MouseEvent) {
 				e.preventDefault()
 				router.go('/messenger')
@@ -60,7 +63,14 @@ export class ProfileSettingsPage extends Block {
 			onSubmit: (e: SubmitEvent) => formSubmit(e, formInputs, this.refs)
 		})
 	}
+
 	render () {
 		return this.compile(template, this.props)
 	}
 }
+
+const withUser = withStore(state => {
+	return {...state.user}
+})
+
+export const ProfileSettingsPage = withUser(ProfileSettingsPageBase)
