@@ -2,8 +2,10 @@ import { Block } from '../../../utils/Block'
 import template from './form-input.hbs'
 import './form-input.scss'
 
+type FormInputType = 'text' | 'email' | 'tel' | 'password'
+
 type FormInputProps = {
-	type: string
+	type: FormInputType
 	error?: string
 	value: unknown
 	validator?: (value: string) => boolean
