@@ -2,11 +2,13 @@ import { Block } from '../../utils/Block'
 import template from './profile-change-password.hbs'
 import './profile-change-password.scss'
 import { InputValidator } from '../../utils/InputValidator'
-import { formSubmit } from '../../utils/formSubmit'
-import type { FormInput } from '../../typings/FormInput'
+import { getFormData } from '../../utils/formSubmit'
+import type { FormTextField } from '../../typings/FormTextField'
 import { router } from '../../router/Router'
+import { userController } from '../../controllers/UserController'
+import type { ChangePasswordRequestData } from '../../api/UserApi'
 
-const formInputs: Record<string, FormInput> = {
+const formInputs: Record<string, FormTextField> = {
 	old_password: {
 		ref: 'password',
 		label: 'Старый пароль',
@@ -41,7 +43,19 @@ export class ProfileChangePasswordPage extends Block {
 				e.preventDefault()
 				router.go('/messenger')
 			},
-			onSubmit: (e: SubmitEvent) => formSubmit(e, formInputs, this.refs)
+			onSubmit: (e: SubmitEvent) => {
+				e.preventDefault()
+				const formData = getFormData(e.target as HTMLFormElement)
+				// TODO: Add validation
+				const { old_password: oldPassword, password: newPassword, password_repeat: passwordRepeat } = formData
+
+				if (newPassword !== passwordRepeat) {
+					alert('Пароли не совпадают')
+					return
+				}
+
+				userController.chagePassword({ oldPassword, newPassword } as ChangePasswordRequestData)
+			}
 		})
 	}
 	render () {
