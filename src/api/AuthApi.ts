@@ -1,4 +1,5 @@
 import { HTTPTransport } from './HTTPTransport'
+import type { User, UserId } from '../typings'
 
 export type SignupRequestData = {
 	first_name: string
@@ -9,7 +10,6 @@ export type SignupRequestData = {
 	phone: string
 }
 
-type UserId = number
 type SignupResponseData = {
 	id: UserId
 }
@@ -19,16 +19,7 @@ export type SigninRequestData = {
 	password: 'string'
 }
 
-export type UserInfo = {
-	id: UserId
-	first_name: string
-	second_name: string
-	display_name: string
-	phone: string
-	login: string
-	avatar: string
-	email: string
-}
+
 
 export class AuthApi {
 	private http: HTTPTransport
@@ -45,7 +36,7 @@ export class AuthApi {
 		return this.http.post('/signin', { data: payload })
 	}
 
-	async user (): Promise<UserInfo> {
+	async user (): Promise<User> {
 		return this.http.get('/user')
 	}
 
