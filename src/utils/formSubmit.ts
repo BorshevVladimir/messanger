@@ -1,4 +1,4 @@
-import type {  FormTextField } from '../typings/FormTextField'
+import type {  FormTextField } from '../typings'
 import type { Block } from './Block'
 import type { Indexed } from './isObject'
 import type { Validator } from './InputValidator'

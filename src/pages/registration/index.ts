@@ -1,7 +1,7 @@
 import { Block } from '../../utils/Block'
 import template from './registration.hbs'
 import { InputValidator } from '../../utils/InputValidator'
-import type { FormTextField } from '../../typings/FormTextField'
+import type { FormTextField } from '../../typings'
 import './registration.scss'
 import { getFormData } from '../../utils/formSubmit'
 import { router } from '../../router/Router'
