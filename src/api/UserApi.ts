@@ -1,13 +1,8 @@
 import { HTTPTransport } from '../api/HTTPTransport'
+import type { User } from '../typings'
 
-export type UserUpdateRequestData = {
-	first_name: string
-	second_name: string
-	display_name: string
-	login: string
-	email: string
-	phone: string
-}
+export type ChangeProfileRequestData = Partial<Omit<User, 'id'>>
+
 
 export type ChangePasswordRequestData = {
 	oldPassword: string
@@ -23,5 +18,9 @@ export class UserApi {
 
 	changePassword (payload: ChangePasswordRequestData) {
 		return this.http.put('/password', { data: payload })
+	}
+
+	changeProfile (payload: ChangeProfileRequestData) {
+		return this.http.put('/profile', { data: payload })
 	}
 }

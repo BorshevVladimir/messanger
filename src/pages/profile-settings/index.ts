@@ -2,10 +2,11 @@ import { Block } from '../../utils/Block'
 import template from './profile-settings.hbs'
 import './profile-settings.scss'
 import { InputValidator } from '../../utils/InputValidator'
-import { formSubmit } from '../../utils/formSubmit'
-import type { FormTextField } from '../../typings/FormTextField'
+import { getFormData } from '../../utils/formSubmit'
+import type { FormTextField } from '../../typings'
 import { router } from '../../router/Router'
 import { withStore } from '../../store/Store'
+import { userController } from '../../controllers/UserController'
 
 const formInputs: Record<string, FormTextField> = {
 	email: {
@@ -52,15 +53,22 @@ const formInputs: Record<string, FormTextField> = {
 
 class ProfileSettingsPageBase extends Block {
 	init () {
-		const inputFormWithValues = Object.keys(formInputs).map(key => ({...formInputs[key], value: this.props[key]}))
+		for (const key in formInputs) {
+			formInputs[key].value = this.props[key] as string
+		}
 
 		this.setProps({
-			formInputs: inputFormWithValues,
+			formInputs,
 			goToChatPage (e: MouseEvent) {
 				e.preventDefault()
 				router.go('/messenger')
 			},
-			onSubmit: (e: SubmitEvent) => formSubmit(e, formInputs, this.refs)
+			onSubmit: (e: SubmitEvent) => {
+				e.preventDefault()
+				// TODO: Add validation
+				const formData = getFormData(e.target as HTMLFormElement)
+				userController.changeProfile(formData)
+			}
 		})
 	}
 
