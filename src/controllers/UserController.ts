@@ -25,6 +25,16 @@ export class UserController {
 			console.error(err)
 		}
 	}
+
+	async changeAvatar (data: FormData) {
+		try {
+			await this.api.changeAvatar(data)
+			alert('Аватарка пользователя успешо изменена')
+			await authController.fetchUser()
+		} catch (err) {
+			console.error(err)
+		}
+	}
 }
 
 const userController = new UserController()

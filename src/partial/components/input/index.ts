@@ -4,7 +4,10 @@ import './input.scss'
 
 type InputProps = {
 	onBlur: () => void
+	onChange: () => void
+	name: string
 	value: unknown
+	accept?: string
 	events: {
 		blur: () => void
 	}
@@ -15,7 +18,8 @@ export class Input extends Block {
 		super({
 			...props,
 			events: {
-				blur: props.onBlur
+				blur: props.onBlur,
+				change: props.onChange
 			},
 		})
 	}

@@ -1,9 +1,11 @@
 {{#PageOverlay}}
 	{{#Card title='Настройка профиля'}}
+	<div class="user-settings-form__avatar">
+		{{#UploadFile name='avatar' onSelect=onAvatarChange accept='image/*' }}
+			{{{ Avatar big=true src=avatar }}}
+		{{/UploadFile }}
+	</div>
 	{{#Form classes='user-settings-form' ref='form' id='profile-settings-form' onSubmit=onSubmit onFocusout=onFocusout }}
-		<div class="user-settings-form__avatar">
-			{{{ Avatar big=true src="https://allods.mail.ru/forums/image.php?u=309803&dateline=1478711553" }}}
-		</div>
 		{{#each formInputs}}
 			{{{FormInput
 				ref=this.ref

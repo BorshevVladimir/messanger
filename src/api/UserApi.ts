@@ -23,4 +23,8 @@ export class UserApi {
 	changeProfile (payload: ChangeProfileRequestData) {
 		return this.http.put('/profile', { data: payload })
 	}
+
+	changeAvatar (payload: FormData) {
+		return this.http.put('/profile/avatar', { data: payload })
+	}
 }

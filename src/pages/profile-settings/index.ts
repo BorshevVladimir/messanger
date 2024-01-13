@@ -68,6 +68,9 @@ class ProfileSettingsPageBase extends Block {
 				// TODO: Add validation
 				const formData = getFormData(e.target as HTMLFormElement)
 				userController.changeProfile(formData)
+			},
+			onAvatarChange: (data: FormData) => {
+				userController.changeAvatar(data)
 			}
 		})
 	}
@@ -78,7 +81,7 @@ class ProfileSettingsPageBase extends Block {
 }
 
 const withUser = withStore(state => {
-	return {...state.user}
+	return {...state.user, avatar: `https://ya-praktikum.tech/api/v2/resources${state.user?.avatar}` }
 })
 
 export const ProfileSettingsPage = withUser(ProfileSettingsPageBase)
