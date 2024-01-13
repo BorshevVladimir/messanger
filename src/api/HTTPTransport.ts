@@ -1,4 +1,4 @@
-type OptionsData = Record<string, unknown>
+type OptionsData = Record<string, unknown> | FormData
 
 type Options = {
 	method: Method
@@ -57,13 +57,15 @@ function request<TResponse> (
 		xhr.onerror = reject
 		xhr.ontimeout = reject
 
-		xhr.setRequestHeader('Content-Type', 'application/json')
 		xhr.withCredentials = true
 		xhr.responseType = 'json'
 
 		if (method === Method.GET || !data) {
 			xhr.send()
+		} else if (data instanceof FormData) {
+			xhr.send(data)
 		} else {
+			xhr.setRequestHeader('Content-Type', 'application/json')
 			xhr.send(JSON.stringify(data))
 		}
 	})
