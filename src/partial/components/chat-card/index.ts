@@ -1,18 +1,18 @@
 import { Block } from '../../../utils/Block'
-import template from './chat-user.hbs'
-import './chat-user.scss'
+import template from './chat-card.hbs'
+import './chat-card.scss'
 
-type ChatUserProps = {
+type ChatCardProps = {
 	avatarSrc: string
 	avatarAlt: string
-	name: string
+	title: string
 	lastMessage?: string
 	lastMessageTime?: string
 	messageCount?: number
 }
 
-export class ChatUser extends Block {
-	constructor (props: ChatUserProps) {
+export class ChatCard extends Block {
+	constructor (props: ChatCardProps) {
 		super(props)
 	}
 	render () {

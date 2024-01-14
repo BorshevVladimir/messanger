@@ -1,6 +1,6 @@
 @import "/src/utils/variables";
 
-.chat-user {
+.chat-card {
 	display: flex;
 	gap: 13px;
 	padding: 10px 15px;
@@ -10,7 +10,7 @@
 		flex-grow: 1
 	}
 
-	&__name {
+	&__title {
 		font-size: 14;
 		font-weight: bold;
 	}

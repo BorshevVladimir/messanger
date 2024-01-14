@@ -15,15 +15,15 @@
 			{{{PopupAddUser ref='popup-add-user'}}}
 		</div>
 
-		<div class='chat-users'>
-			{{#each chatUsers}}
-				{{{ChatUser
-				avatarSrc=this.avatarSrc
-				avatarAlt=this.avatarAlt
-				name=this.name
-				lastMessage=this.lastMessage
-				lastMessageTime=this.lastMessageTime
-				messageCount=this.messageCount
+		<div class='chat-cards'>
+			{{#each chats }}
+				{{{ChatCard
+				avatarSrc=this.avatar
+				avatarAlt=this.title
+				title=this.title
+				lastMessage=this.last_message
+				lastMessageTime=this.created_by
+				messageCount=this.unread_count
 			}}}
 			{{/each}}
 		</div>

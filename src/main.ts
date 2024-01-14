@@ -19,7 +19,7 @@ import { ErrorPageContent } from './partial/components/error-page-content'
 import { CircleButton } from './partial/components/circle-button'
 import { Badge } from './partial/components/badge'
 import { Avatar } from './partial/components/avatar'
-import { ChatUser } from './partial/components/chat-user'
+import { ChatCard } from './partial/components/chat-card'
 import { Form } from './partial/components/form'
 import { FormFile } from './partial/components/form-file'
 import { Span } from './partial/components/span'
@@ -41,7 +41,7 @@ registerComponent('ErrorPageContent', ErrorPageContent)
 registerComponent('CircleButton', CircleButton)
 registerComponent('Badge', Badge)
 registerComponent('Avatar', Avatar)
-registerComponent('ChatUser', ChatUser)
+registerComponent('ChatCard', ChatCard)
 registerComponent('Form', Form)
 registerComponent('FormFile', FormFile)
 registerComponent('Span', Span)
