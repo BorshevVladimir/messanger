@@ -9,6 +9,10 @@ export class ChatsApi {
 		this.http = new HTTPTransport('/chats')
 	}
 
+	create (name: string) {
+		return this.http.post('/', { data: { title: name }})
+	}
+
 	read (): Promise<ChatInfo> {
 		return this.http.get('/')
 	}
