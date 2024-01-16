@@ -3,7 +3,7 @@ import { set } from '../utils/set'
 import type { Indexed } from '../utils/isObject'
 import type { Block } from '../utils/Block'
 import { deepEqual } from '../utils/deepEqual'
-import type { User, ChatInfo } from '../typings'
+import type { User, ChatInfo, Message } from '../typings'
 
 export enum StoreEvents {
 	Updated = 'updated',
@@ -12,7 +12,8 @@ export enum StoreEvents {
 type State = {
 	user?: User,
 	chats?: ChatInfo[],
-	selectedChat?: ChatInfo['id']
+	selectedChat?: ChatInfo['id'],
+	messages?: Record<ChatInfo['id'], Message[]>
 }
 
 export function withStore (mapStateToProps: (state: State) => Indexed) {
