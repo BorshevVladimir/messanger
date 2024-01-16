@@ -18,18 +18,21 @@
 		<div class='chat-cards'>
 			{{#each chats }}
 				{{{ChatCard
-				avatarSrc=this.avatar
-				avatarAlt=this.title
-				title=this.title
-				lastMessage=this.last_message
-				lastMessageTime=this.created_by
-				messageCount=this.unread_count
-			}}}
+					id=this.id
+					avatarSrc=this.avatar
+					avatarAlt=this.title
+					title=this.title
+					lastMessage=this.last_message
+					lastMessageTime=this.created_by
+					messageCount=this.unread_count
+					onClick=this.onClick
+				}}}
 			{{/each}}
 		</div>
 	</div>
 
 	<div class='chat-righ-column'>
+		{{#if selectedChat }}
 		<div class='chat-header'>
 			<div class='chat-info'>
 				{{{Avatar
@@ -107,5 +110,6 @@
 			{{/CircleButton}}
 			</div>
 		</div>
+		{{/if}}
 	</div>
 </main>

@@ -1,5 +1,6 @@
 import { ChatsApi } from '../api/ChatsApi'
 import { store } from '../store/Store'
+import type { ChatInfo } from '../typings'
 
 class ChatsController {
 	private readonly api: ChatsApi = new ChatsApi()
@@ -17,6 +18,10 @@ class ChatsController {
 		} catch (err) {
 			console.error(err)
 		}
+	}
+
+	selectChat (id: ChatInfo['id']) {
+		store.set('selectedChat', id)
 	}
 }
 

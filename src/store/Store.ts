@@ -11,7 +11,8 @@ export enum StoreEvents {
 
 type State = {
 	user?: User,
-	chats?: ChatInfo[]
+	chats?: ChatInfo[],
+	selectedChat?: ChatInfo['id']
 }
 
 export function withStore (mapStateToProps: (state: State) => Indexed) {
@@ -50,4 +51,5 @@ class Store extends EventBus {
 }
 
 const store = new Store()
+window.store = store
 export { store }

@@ -30,8 +30,15 @@
 	}
 
 	&:hover {
-		background-color: $gray-color;
+		background-color: $light-gray-color;
 		cursor: pointer;
+	}
+
+	&_selected {
+		background-color: $gray-color;
+		&:hover {
+			background-color: $gray-color;
+		}
 	}
 }
 

@@ -2,6 +2,7 @@ import { withStore } from '../../store/Store'
 import { Block } from '../../utils/Block'
 import template from './chat.hbs'
 import { chatsController } from '../../controllers/ChatsController'
+import type { ChatInfo } from '../../typings'
 import './chat.scss'
 
 type ChatUser = {
@@ -19,8 +20,13 @@ const popupChatUsers: Pick<ChatUser, 'name' | 'avatarSrc' | 'avatarAlt'>[] = Arr
 	name:'Иван Иванов',
 }))
 
+type ChatPageProps = {
+	chats: ChatInfo[],
+	selectedChat: number
+}
+
 class ChatPageBase extends Block {
-	constructor (props) {
+	constructor (props: ChatPageProps) {
 		super({
 			...props,
 			popupChatUsers,
@@ -49,8 +55,18 @@ class ChatPageBase extends Block {
 		)
 	}
 
-	init () {
-		chatsController.fetchChats()
+	async init () {
+		await chatsController.fetchChats()
+		this.setProps({ chats: this._crateChats(this.props) })
+	}
+
+	protected componentDidUpdate (oldProps: ChatPageProps, newProps: ChatPageProps) {
+		newProps.chats = this._crateChats(newProps)
+		return true
+	}
+
+	private _crateChats (props: ChatPageProps) {
+		return props.chats.map(chat => ({...chat,  onClick: () => chatsController.selectChat(chat.id)}))
 	}
 
 	render () {
@@ -58,6 +74,6 @@ class ChatPageBase extends Block {
 	}
 }
 
-const withChats = withStore((state) => ({ chats: { ...state.chats } }))
+const withChats = withStore((state) => ({ chats: [ ...(state.chats || []) ], selectedChat: state.selectedChat }))
 
 export const ChatPage = withChats(ChatPageBase)
