@@ -18,6 +18,7 @@ class MessagesController {
 		await wsTransport.connect()
 
 		this._subscribe(wsTransport, id)
+		this.fetchOldMessages(id)
 	}
 
 	private _subscribe (transport: WSTransport, id: ChatInfo['id']) {
@@ -36,6 +37,15 @@ class MessagesController {
 			type: 'message',
 			content: message
 		})
+	}
+
+	public fetchOldMessages (id: ChatInfo['id']) {
+		const socket = this._sockets.get(id)
+		if (!socket) {
+			throw new Error(`Чат ${id} не подключен`)
+		}
+
+		socket.send({ type: 'get old', content: '0' })
 	}
 
 	public closeAll () {
