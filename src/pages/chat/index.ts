@@ -57,16 +57,6 @@ class ChatPageBase extends Block {
 
 	async init () {
 		await chatsController.fetchChats()
-		this.setProps({ chats: this._crateChats(this.props) })
-	}
-
-	protected componentDidUpdate (oldProps: ChatPageProps, newProps: ChatPageProps) {
-		newProps.chats = this._crateChats(newProps)
-		return true
-	}
-
-	private _crateChats (props: ChatPageProps) {
-		return props.chats.map(chat => ({...chat,  onClick: () => chatsController.selectChat(chat.id)}))
 	}
 
 	render () {

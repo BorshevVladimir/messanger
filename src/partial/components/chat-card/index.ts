@@ -1,3 +1,4 @@
+import { chatsController } from '../../../controllers/ChatsController'
 import { withStore } from '../../../store/Store'
 import { Block } from '../../../utils/Block'
 import template from './chat-card.hbs'
@@ -11,12 +12,11 @@ type ChatCardProps = {
 	lastMessage?: string
 	lastMessageTime?: string
 	messageCount?: number
-	onClick: () => void
 }
 
 class ChatCardBase extends Block {
 	constructor (props: ChatCardProps) {
-		super({ ...props, events: { click: props.onClick } })
+		super({ ...props, events: { click: () => chatsController.selectChat(props.id) } })
 	}
 	render () {
 		return this.compile(template, {...this.props, isSelected: this.props.id === this.props.selectedChat })
