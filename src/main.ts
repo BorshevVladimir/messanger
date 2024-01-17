@@ -28,7 +28,7 @@ import { SettingsOverlay } from './partial/components/settings-overlay'
 import { PopupAddChat } from './partial/components/popup-add-chat'
 import { PopupChatUsers } from './partial/components/popup-chat-users'
 import { PopupAddUser } from './partial/components/popup-add-user'
-import { PopupConfirmDelete } from './partial/components/popup-confirm-delete'
+import { PopupConfirm } from './partial/components/popup-confirm'
 import { ChatMessenger } from './partial/components/chat-messenger'
 import { UploadFile } from './partial/components/upload-file'
 import { authController } from './controllers/AuthController'
@@ -53,7 +53,7 @@ registerComponent('PopupAddChat', PopupAddChat)
 registerComponent('PopupChatUsers', PopupChatUsers)
 registerComponent('PopupAddUser', PopupAddUser)
 registerComponent('ChatMessenger', ChatMessenger)
-registerComponent('PopupConfirmDelete', PopupConfirmDelete)
+registerComponent('PopupConfirm', PopupConfirm)
 registerComponent('UploadFile', UploadFile)
 
 enum Routes {

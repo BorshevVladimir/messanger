@@ -52,7 +52,14 @@ class ChatMessengerBase extends Block {
 				this.refs['popup-add-user'].showToggle()
 			},
 			deleteChatHandle: () => {
-				this.refs['popup-delete-confirm'].showToggle()
+				this.refs['popup-confirm-delete'].show()
+			},
+			onChatDeleteConfirm: () => {
+				console.log('delete') // TODO:
+				this.refs['popup-confirm-delete'].hide()
+			},
+			onChatDeleteCancel: () => {
+				this.refs['popup-confirm-delete'].hide()
 			}
 		})
 	}

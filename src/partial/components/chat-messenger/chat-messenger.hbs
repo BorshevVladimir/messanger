@@ -17,7 +17,7 @@
 			{{#CircleButton danger=true onClick=deleteChatHandle }}
 				<i class="fa-solid fa-xmark"></i>
 			{{/CircleButton}}
-			{{{ PopupConfirmDelete title="Действительно удалить ?" ref='popup-delete-confirm' }}}
+			{{{ PopupConfirm title="Действительно удалить?" ref='popup-confirm-delete' onConfirm=onChatDeleteConfirm onCancel=onChatDeleteCancel }}}
 		</div>
 	</div>
 

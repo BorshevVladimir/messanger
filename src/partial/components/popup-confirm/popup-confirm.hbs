@@ -3,7 +3,7 @@
 		{{title}}
 	</h3>
 	<div class="popup-confirm__actions">
-		{{#Button danger=true}}Удалить{{/Button}}
-		{{#Button}}Отмена{{/Button}}
+		{{#Button danger=true onClick=onConfirm }}Удалить{{/Button}}
+		{{#Button onClick=onCancel }}Отмена{{/Button}}
 	</div>
 </div>
