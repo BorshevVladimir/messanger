@@ -58,7 +58,7 @@ export class WSTransport extends EventBus {
 				return
 			}
 
-			this.emit(WSTransportEvents.Message, message)
+			this.emit(WSTransportEvents.Message, data)
 		})
 	}
 
