@@ -16,6 +16,10 @@ export class ChatsApi {
 		return this.http.get('/')
 	}
 
+	delete (id: ChatInfo['id']): Promise<void> {
+		return this.http.delete('/', { data: {chatId: id } })
+	}
+
 	async getToken (id: ChatInfo['id']): Promise<string> {
 		const response = await this.http.post<{ token: string }>(`/token/${id}`)
 		return response.token

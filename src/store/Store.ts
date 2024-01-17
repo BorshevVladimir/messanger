@@ -12,7 +12,7 @@ export enum StoreEvents {
 type State = {
 	user?: User,
 	chats?: ChatInfo[],
-	selectedChat?: ChatInfo['id'],
+	selectedChat?: ChatInfo['id'] | undefined,
 	messages?: Record<ChatInfo['id'], Message[]>
 }
 

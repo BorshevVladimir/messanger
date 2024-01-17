@@ -1,3 +1,4 @@
+import { chatsController } from '../../../controllers/ChatsController'
 import { withStore } from '../../../store/Store'
 import { Block } from '../../../utils/Block'
 import template from './chat-messenger.hbs'
@@ -46,7 +47,7 @@ class ChatMessengerBase extends Block {
 				this.refs['popup-confirm-delete'].show()
 			},
 			onChatDeleteConfirm: () => {
-				console.log('delete') // TODO:
+				chatsController.deleteChat(this.props.chatInfo.id)
 				this.refs['popup-confirm-delete'].hide()
 			},
 			onChatDeleteCancel: () => {
