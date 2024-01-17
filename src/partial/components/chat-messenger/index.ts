@@ -36,17 +36,8 @@ class ChatMessengerBase extends Block {
 			attachHandle: () => {
 				this.refs['attach-block'].showToggle()
 			},
-			userPageClickHandle: () => {
-				this.refs['settings-overlay'].show()
-			},
-			closeOverlayHandle: () => {
-				this.refs['settings-overlay'].hide()
-			},
 			togglePopupUsersHandle: () => {
 				this.refs['popup-chat-users'].showToggle()
-			},
-			addChatHandle: () => {
-				this.refs['popup-add-chat'].showToggle()
 			},
 			addUserHandle: () => {
 				this.refs['popup-add-user'].showToggle()

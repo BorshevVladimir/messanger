@@ -12,7 +12,18 @@ type ChatPageProps = {
 
 class ChatPageBase extends Block {
 	constructor (props: ChatPageProps) {
-		super(props)
+		super({
+			...props,
+			userPageClickHandle: () => {
+				this.refs['settings-overlay'].show()
+			},
+			closeOverlayHandle: () => {
+				this.refs['settings-overlay'].hide()
+			},
+			addChatHandle: () => {
+				this.refs['popup-add-chat'].showToggle()
+			}
+		})
 	}
 
 	async init () {
