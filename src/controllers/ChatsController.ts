@@ -1,12 +1,18 @@
 import { ChatsApi } from '../api/ChatsApi'
 import { store } from '../store/Store'
 import type { ChatInfo } from '../typings'
+import { messagesController } from './MessagesController'
 
 class ChatsController {
 	private readonly api: ChatsApi = new ChatsApi()
 
 	async fetchChats () {
 		const chats = await this.api.read()
+
+		chats.map(async (chat) => {
+			const token = await this.getToken(chat.id)
+			await messagesController.connect(chat.id, token)
+		})
 		store.set('chats', chats)
 	}
 
@@ -22,6 +28,10 @@ class ChatsController {
 
 	selectChat (id: ChatInfo['id']) {
 		store.set('selectedChat', id)
+	}
+
+	getToken (id: ChatInfo['id']) {
+		return this.api.getToken(id)
 	}
 }
 
