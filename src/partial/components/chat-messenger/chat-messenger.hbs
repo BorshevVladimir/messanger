@@ -1,0 +1,80 @@
+<div class="chat-messenger-wrapper">
+	<div class='chat-header'>
+		{{messages}}
+		<div class='chat-info'>
+			{{{Avatar
+				src=chatInfo.avatar
+				alt=chatInfo.title
+			}}}
+			<h3 class='chat-info__name'>Чат “<span>{{chatInfo.title}}</span>”</h3>
+		</div>
+
+		<div class="chat-actions">
+			{{#CircleButton dark=true onClick=togglePopupUsersHandle }}
+				<i class="fa-solid fa-users"></i>
+			{{/CircleButton}}
+			{{{ PopupChatUsers users=popupChatUsers ref='popup-chat-users' }}}
+			{{#CircleButton danger=true onClick=deleteChatHandle }}
+				<i class="fa-solid fa-xmark"></i>
+			{{/CircleButton}}
+			{{{ PopupConfirmDelete title="Действительно удалить ?" ref='popup-delete-confirm' }}}
+		</div>
+	</div>
+
+			<div class="messages">
+			<div class="messages__item message">
+				<p class="message__content">
+					Привет! Смотри, тут всплыл интересный кусок лунной космической истории — НАСА в какой-то момент попросила Хассельблад адаптировать модель SWC для полетов на Луну. Сейчас мы все знаем что астронавты летали с моделью 500 EL — и к слову говоря, все тушки этих камер все еще находятся на поверхности Луны, так как астронавты с собой забрали только кассеты с пленкой.
+					Хассельблад в итоге адаптировал SWC для космоса, но что-то пошло не так и на ракету они так никогда и не попали. Всего их было произведено 25 штук, одну из них недавно продали на аукционе за 45000 евро.
+					</p>
+			<span class="message__time">14:58</span>
+			</div>
+
+			<div class="messages__item devider">
+				<p class="devider__text">13 ноября</p>
+			</div>
+
+			<div class="messages__item message">
+				<p class="message__content">
+					Привет! Смотри, тут всплыл интересный кусок лунной космической истории — НАСА в какой-то момент попросила Хассельблад адаптировать модель SWC для полетов на Луну. Сейчас мы все знаем что астронавты летали с моделью 500 EL — и к слову говоря, все тушки этих камер все еще находятся на поверхности Луны, так как астронавты с собой забрали только кассеты с пленкой.
+					Хассельблад в итоге адаптировал SWC для космоса, но что-то пошло не так и на ракету они так никогда и не попали. Всего их было произведено 25 штук, одну из них недавно продали на аукционе за 45000 евро.
+					</p>
+			<span class="message__time">14:58</span>
+			</div>
+
+			<div class="messages__item message">
+				<p class="message__content">
+					<img src="https://www.fotolandscape.com/wp-content/uploads/2014/12/DSC_0225.jpg" alt="Пейзаж" />
+				</p>
+			<span class="message__time">14:58</span>
+			</div>
+
+			<div class="messages__item message message_self">
+				<p class="message__content">
+					<img src="https://www.fotolandscape.com/wp-content/uploads/2014/12/DSC_0225.jpg" alt="Пейзаж" />
+				</p>
+			<span class="message__time">14:58</span>
+			</div>
+
+			<div class="messages__item message message_self">
+				<p class="message__content">
+					Понял
+				</p>
+			<span class="message__time">14:58</span>
+			</div>
+		</div>
+
+		<div class="messanger">
+			{{{Input classes="messanger__input" placeholder="Введите сообщение" name="message" }}}
+			<div class="messanger__actions">
+			{{{ AttachBlock ref="attach-block" }}}
+			{{#CircleButton success=true onClick=attachHandle }}
+				<i class="fa-solid fa-paperclip"></i>
+			{{/CircleButton}}
+
+			{{#CircleButton}}
+				<i class="fa-solid fa-paper-plane"></i>
+			{{/CircleButton}}
+			</div>
+		</div>
+</div>

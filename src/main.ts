@@ -29,6 +29,7 @@ import { PopupAddChat } from './partial/components/popup-add-chat'
 import { PopupChatUsers } from './partial/components/popup-chat-users'
 import { PopupAddUser } from './partial/components/popup-add-user'
 import { PopupConfirmDelete } from './partial/components/popup-confirm-delete'
+import { ChatMessenger } from './partial/components/chat-messenger'
 import { UploadFile } from './partial/components/upload-file'
 import { authController } from './controllers/AuthController'
 
@@ -51,6 +52,7 @@ registerComponent('SettingsOverlay', SettingsOverlay)
 registerComponent('PopupAddChat', PopupAddChat)
 registerComponent('PopupChatUsers', PopupChatUsers)
 registerComponent('PopupAddUser', PopupAddUser)
+registerComponent('ChatMessenger', ChatMessenger)
 registerComponent('PopupConfirmDelete', PopupConfirmDelete)
 registerComponent('UploadFile', UploadFile)
 
