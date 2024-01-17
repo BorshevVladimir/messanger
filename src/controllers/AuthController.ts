@@ -7,6 +7,7 @@ import {
 import { store } from '../store/Store'
 
 import { router } from '../router/Router'
+import { messagesController } from './MessagesController'
 
 class AuthController {
 	private readonly api: AuthApi = new AuthApi()
@@ -38,6 +39,7 @@ class AuthController {
 
 	async logout () {
 		try {
+			messagesController.closeAll()
 			this.api.logout()
 			router.go('/')
 		} catch(err) {
