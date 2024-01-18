@@ -1,4 +1,5 @@
 import { isPlainObject, type Indexed } from './isObject'
+import { merge } from './merge'
 
 function set (
 	object: Indexed | unknown,
@@ -14,7 +15,7 @@ function set (
 		return { [current]: acc }
 	}, value)
 
-	return Object.assign(object, res)
+	return merge(object, res as Indexed)
 }
 
 export { set }
