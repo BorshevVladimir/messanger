@@ -31,6 +31,7 @@ import { PopupAddUser } from './partial/components/popup-add-user'
 import { PopupConfirm } from './partial/components/popup-confirm'
 import { ChatMessenger } from './partial/components/chat-messenger'
 import { UploadFile } from './partial/components/upload-file'
+import { ChatMessage } from './partial/components/chat-message'
 import { authController } from './controllers/AuthController'
 
 registerComponent('Button', Button)
@@ -55,6 +56,7 @@ registerComponent('PopupAddUser', PopupAddUser)
 registerComponent('ChatMessenger', ChatMessenger)
 registerComponent('PopupConfirm', PopupConfirm)
 registerComponent('UploadFile', UploadFile)
+registerComponent('ChatMessage', ChatMessage)
 
 enum Routes {
 	Index = '/',

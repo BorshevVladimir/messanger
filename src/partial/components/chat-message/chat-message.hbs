@@ -1,0 +1,7 @@
+<div class="messages__item chat-message {{#if isMine}}chat-message_self{{/if}}">
+	{{#unless isMine}}
+		<span class="chat-message__user">{{username}}</span>
+	{{/unless}}
+	<p class="chat-message__content">{{content}}</p>
+	<span class="chat-message__time">{{time}}</span>
+</div>

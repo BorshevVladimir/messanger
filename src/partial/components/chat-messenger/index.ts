@@ -1,7 +1,8 @@
 import { chatsController } from '../../../controllers/ChatsController'
 import { messagesController } from '../../../controllers/MessagesController'
-import { withStore } from '../../../store/Store'
-import { ChatUser } from '../../../typings'
+import { withStore, store } from '../../../store/Store'
+import { ChatUser, Message } from '../../../typings'
+import { formatTime } from '../../../utils/formatTime'
 import { Block } from '../../../utils/Block'
 import template from './chat-messenger.hbs'
 import './chat-messenger.scss'
@@ -65,6 +66,20 @@ class ChatMessengerBase extends Block {
 	}
 }
 
+function formatMessages (messages: Message[], chatUsers: ChatUser[]) {
+	const currentUserId = store.getState().user?.id
+
+	return messages.map(message => {
+		const user = chatUsers.find(user => user.id === message.user_id)
+		return {
+			...message,
+			username: user ? `${user.first_name} ${user.second_name}` : 'Неизвестный пользователь',
+			isMine: currentUserId === message.user_id,
+			time: formatTime(message.time)
+		}
+	})
+}
+
 const withChat = withStore(state => {
 	const chatId = state.selectedChat
 	const chatInfo = state.chats?.find(chat => chat.id === chatId)
@@ -78,8 +93,10 @@ const withChat = withStore(state => {
 		}
 	}
 
+	const messages = state?.messages?.[chatId] || []
+
 	return {
-		messages: state?.messages?.[chatId] || [], // TODO: Вывести, но сейчас все чаты пустые
+		messages: formatMessages(messages, state.chatUsers || []), // TODO: Вывести, но сейчас все чаты пустые
 		chatInfo: { ...chatInfo, avatar: `https://ya-praktikum.tech/api/v2/resources${chatInfo.avatar}`},
 		chatUsers: [...chatUsers.map(user => ({...user, isAdmin: user.role === 'admin' }))]
 	}

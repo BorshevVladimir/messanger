@@ -94,28 +94,3 @@
 		gap: 15px;
 	}
 }
-
-.message {
-	background-color: $white-color;
-	border: 1px solid $gray-color;
-	padding: 20px;
-	border-radius: $border-radius;
-	max-width: 420px;
-
-	&__time {
-		display: block;
-		text-align: right;
-		font-weight: 300;
-		font-size: 11px;
-	}
-
-	& img {
-		max-width: 100%;
-	}
-
-	&_self {
-		align-self: flex-end;
-		color: $white-color;
-		background-color: $blue-color;
-	}
-}
