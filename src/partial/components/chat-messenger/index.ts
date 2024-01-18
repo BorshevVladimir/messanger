@@ -1,4 +1,5 @@
 import { chatsController } from '../../../controllers/ChatsController'
+import { messagesController } from '../../../controllers/MessagesController'
 import { withStore } from '../../../store/Store'
 import { Block } from '../../../utils/Block'
 import template from './chat-messenger.hbs'
@@ -52,6 +53,14 @@ class ChatMessengerBase extends Block {
 			},
 			onChatDeleteCancel: () => {
 				this.refs['popup-confirm-delete'].hide()
+			},
+			sendMessage: () => {
+				const input = this.refs['messenger-input'].element as HTMLInputElement
+				const message = input.value
+				if (message) {
+					messagesController.sendMessage(this.props.chatInfo.id, message)
+					input.value = ''
+				}
 			}
 		})
 	}
@@ -72,7 +81,7 @@ const withChat = withStore(state => {
 	}
 
 	return {
-		messages: state?.messages?.[chatId] || [],
+		messages: state?.messages?.[chatId] || [], // TODO: Вывести, но сейчас все чаты пустые
 		chatInfo: { ...chatInfo, avatar: `https://ya-praktikum.tech/api/v2/resources${chatInfo.avatar}`}
 	}
 })
