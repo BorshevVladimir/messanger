@@ -54,7 +54,7 @@ export class WSTransport extends EventBus {
 		this._socket?.addEventListener('message', (message) => {
 			const data = JSON.parse(message.data)
 
-			if (data?.type === 'pong') {
+			if (['user connected', 'pong'].includes(data?.type)) {
 				return
 			}
 
