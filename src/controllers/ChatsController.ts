@@ -40,6 +40,15 @@ class ChatsController {
 	getToken (id: ChatInfo['id']) {
 		return this.api.getToken(id)
 	}
+
+	async fetchUsers (id: ChatInfo['id']) {
+		try {
+			const users = await this.api.users(id)
+			store.set('chatUsers', users)
+		} catch (err) {
+			console.error(`Ошибка получения списка пользователей чата: ${err}`)
+		}
+	}
 }
 
 const chatsController = new ChatsController()

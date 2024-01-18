@@ -1,13 +1,10 @@
+import { ChatUser } from '../../../typings'
 import { Block } from '../../../utils/Block'
 import template from './popup-chat-users.hbs'
 import './popup-chat-users.scss'
 
 type PopupChatUsersProps = {
-	users: {
-		name: string,
-		avatarSrc: string
-		avatarAlt: string
-	}[]
+	users: ChatUser[]
 }
 
 export class PopupChatUsers extends Block {

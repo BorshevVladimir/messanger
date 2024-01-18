@@ -24,4 +24,8 @@ export class ChatsApi {
 		const response = await this.http.post<{ token: string }>(`/token/${id}`)
 		return response.token
 	}
+
+	users (id: ChatInfo['id']) {
+		return this.http.get(`/${id}/users`)
+	}
 }

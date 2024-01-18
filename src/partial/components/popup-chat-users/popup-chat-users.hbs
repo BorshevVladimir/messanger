@@ -6,9 +6,11 @@
 	<ul class="popup-chat-users__list users-list">
 		{{#each users}}
 			<li class="users-list__item users-list-item">
-				{{{Avatar src=this.avatarSrc alt=this.avatarAlt}}}
-				<span class="users-list-item__name">{{this.name}}</span>
-				{{#CircleButton danger=true}}<i class='fa-solid fa-xmark' /></i>{{/CircleButton}}
+				{{{Avatar src=this.avatar alt=this.avatarAlt}}}
+				<span class="users-list-item__name">{{ this.first_name }} {{ this.second_name }}</span>
+				{{#unless this.isAdmin }}
+					{{#CircleButton danger=true}}<i class='fa-solid fa-xmark' /></i>{{/CircleButton}}
+				{{/unless  }}
 			</li>
 		{{/each}}
 	</ul>
