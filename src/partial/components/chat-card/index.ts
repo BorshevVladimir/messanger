@@ -1,6 +1,7 @@
 import { chatsController } from '../../../controllers/ChatsController'
 import { withStore } from '../../../store/Store'
 import { Block } from '../../../utils/Block'
+import { formatTime } from '../../../utils/formatTime'
 import template from './chat-card.hbs'
 import './chat-card.scss'
 
@@ -19,7 +20,12 @@ class ChatCardBase extends Block {
 		super({ ...props, events: { click: () => chatsController.selectChat(props.id) } })
 	}
 	render () {
-		return this.compile(template, {...this.props, isSelected: this.props.id === this.props.selectedChat })
+		const newProps = {
+			...this.props,
+			isSelected: this.props.id === this.props.selectedChat,
+			lastMessageTime: this.props.lastMessageTime ?  formatTime(this.props.lastMessageTime as string) : undefined
+		}
+		return this.compile(template, newProps)
 	}
 }
 
