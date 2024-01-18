@@ -97,7 +97,7 @@ const withChat = withStore(state => {
 
 	return {
 		messages: formatMessages(messages, state.chatUsers || []), // TODO: Вывести, но сейчас все чаты пустые
-		chatInfo: { ...chatInfo, avatar: `https://ya-praktikum.tech/api/v2/resources${chatInfo.avatar}`},
+		chatInfo: { ...chatInfo, avatar: chatInfo.avatar },
 		chatUsers: [...chatUsers.map(user => ({...user, isAdmin: user.role === 'admin' }))]
 	}
 })

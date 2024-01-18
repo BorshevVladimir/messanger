@@ -36,7 +36,7 @@ export class SettingsOverlayBase extends Block {
 const withUser = withStore((state) => ({
 	// FIXME: с бека поле display_name приходит null
 	username: `${ state.user?.first_name } ${ state.user?.second_name }`,
-	imgSrc: `https://ya-praktikum.tech/api/v2/resources${state.user?.avatar}`
+	imgSrc: state.user?.avatar
 }))
 
 export const SettingsOverlay = withUser(SettingsOverlayBase)

@@ -81,7 +81,7 @@ class ProfileSettingsPageBase extends Block {
 }
 
 const withUser = withStore(state => {
-	return {...state.user, avatar: `https://ya-praktikum.tech/api/v2/resources${state.user?.avatar}` }
+	return { ...state.user, avatar: state.user?.avatar }
 })
 
 export const ProfileSettingsPage = withUser(ProfileSettingsPageBase)

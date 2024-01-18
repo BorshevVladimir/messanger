@@ -1,13 +1,17 @@
+@import "/src/utils/variables";
+
 .avatar {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
+	
 	
 	&__img {
 		object-fit: cover;
 		height: 60px;
 		width: 60px;
 		border-radius: 50%;
+		background: $gray-color;
 	}
 
 	&-big {
