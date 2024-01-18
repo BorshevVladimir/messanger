@@ -1,5 +1,5 @@
 import { HTTPTransport } from '../api/HTTPTransport'
-import { ChatInfo } from '../typings'
+import { ChatInfo, ChatUser } from '../typings'
 
 export class ChatsApi {
 	private http: HTTPTransport
@@ -27,5 +27,13 @@ export class ChatsApi {
 
 	users (id: ChatInfo['id']) {
 		return this.http.get(`/${id}/users`)
+	}
+
+	addUsers (userIds: Array<ChatUser['id']>, chatId: ChatInfo['id']) {
+		return this.http.put('/users', {
+			data: {
+				users: userIds, chatId
+			}
+		})
 	}
 }

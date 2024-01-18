@@ -27,4 +27,8 @@ export class UserApi {
 	changeAvatar (payload: FormData) {
 		return this.http.put('/profile/avatar', { data: payload })
 	}
+
+	search (login: User['login']): Promise<User[]> {
+		return this.http.post<User[]>('/search', { data: { login }})
+	}
 }

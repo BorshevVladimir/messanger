@@ -1,7 +1,8 @@
 <div class="popup-chat-users">
+	<h3 class="popup-chat-users__title">Список пользователей</h3>
 	<div class="popup-chat-users__actions">
-		{{{ Input placeholder='Поиск' }}}
-		{{#CircleButton}}<i class='fa-solid fa-plus' /></i>{{/CircleButton}}
+		{{{ Input placeholder='Введите логин для добавления' ref="user-login" }}}
+		{{#CircleButton onClick=onUserAdd }}<i class='fa-solid fa-plus' /></i>{{/CircleButton}}
 	</div>
 	<ul class="popup-chat-users__list users-list">
 		{{#each users}}

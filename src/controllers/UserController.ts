@@ -1,6 +1,7 @@
 import { UserApi, type ChangePasswordRequestData, type ChangeProfileRequestData } from '../api/UserApi'
 import { router } from '../router/Router'
 import { authController } from './AuthController'
+import { User } from '../typings'
 
 export class UserController {
 	private readonly api: UserApi = new UserApi()
@@ -33,6 +34,15 @@ export class UserController {
 			await authController.fetchUser()
 		} catch (err) {
 			console.error(err)
+		}
+	}
+
+	async search (login: User['login']) {
+		try {
+			const users = await this.api.search(login)
+			return users
+		} catch (err) {
+			console.error(`Ошибка получения списка пользователей ${err}`)
 		}
 	}
 }

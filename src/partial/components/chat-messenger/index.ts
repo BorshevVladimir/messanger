@@ -1,6 +1,7 @@
 import { chatsController } from '../../../controllers/ChatsController'
 import { messagesController } from '../../../controllers/MessagesController'
 import { withStore } from '../../../store/Store'
+import { ChatUser } from '../../../typings'
 import { Block } from '../../../utils/Block'
 import template from './chat-messenger.hbs'
 import './chat-messenger.scss'
@@ -45,6 +46,10 @@ class ChatMessengerBase extends Block {
 					messagesController.sendMessage(this.props.chatInfo.id, message)
 					input.value = ''
 				}
+			},
+			onUserAdd: (login: ChatUser['login']) => {
+				chatsController.addUser(login, this.props.chatInfo.id)
+				this.refs['popup-chat-users'].clearInput()
 			}
 		})
 	}
