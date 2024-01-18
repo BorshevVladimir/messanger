@@ -50,6 +50,9 @@ class ChatMessengerBase extends Block {
 			onUserAdd: (login: ChatUser['login']) => {
 				chatsController.addUser(login, this.props.chatInfo.id)
 				this.refs['popup-chat-users'].clearInput()
+			},
+			onUserDelete: (userId: ChatUser['id']) => {
+				chatsController.deleteUser(userId, this.props.chatInfo.id)
 			}
 		})
 	}

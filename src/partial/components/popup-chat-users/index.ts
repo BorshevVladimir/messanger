@@ -5,7 +5,7 @@ import template from './popup-chat-users.hbs'
 import './popup-chat-users.scss'
 
 type PopupChatUsersProps = {
-	users: ChatUser[],
+	users: ChatUser[]
 	onAdd: () => void
 }
 
@@ -29,6 +29,14 @@ export class PopupChatUsers extends Block {
 	}
 
 	render () {
-		return this.compile(template, this.props)
+		console.log('render')
+		const newUsers = this.props.users?.map((user) => ({
+			...user,
+			onDelete: () => {
+				this.props.onDelete(user.id)
+			},
+		}))
+
+		return this.compile(template, { ...this.props, users: newUsers })
 	}
 }

@@ -12,7 +12,7 @@
 			{{#CircleButton dark=true onClick=togglePopupUsersHandle }}
 				<i class="fa-solid fa-users"></i>
 			{{/CircleButton}}
-			{{{ PopupChatUsers users=chatUsers ref='popup-chat-users' onAdd=onUserAdd }}}
+			{{{ PopupChatUsers users=chatUsers ref='popup-chat-users' onAdd=onUserAdd onDelete=onUserDelete }}}
 			{{#CircleButton danger=true onClick=deleteChatHandle }}
 				<i class="fa-solid fa-xmark"></i>
 			{{/CircleButton}}

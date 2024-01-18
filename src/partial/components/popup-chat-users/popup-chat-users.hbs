@@ -10,8 +10,8 @@
 				{{{Avatar src=this.avatar alt=this.avatarAlt}}}
 				<span class="users-list-item__name">{{ this.first_name }} {{ this.second_name }}</span>
 				{{#unless this.isAdmin }}
-					{{#CircleButton danger=true}}<i class='fa-solid fa-xmark' /></i>{{/CircleButton}}
-				{{/unless  }}
+					{{#CircleButton danger=true onClick=onDelete }}<i class='fa-solid fa-xmark' /></i>{{/CircleButton}}
+				{{/unless }}
 			</li>
 		{{/each}}
 	</ul>

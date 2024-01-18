@@ -36,4 +36,13 @@ export class ChatsApi {
 			}
 		})
 	}
+
+	deleteUser (userIds: Array<ChatUser['id']>, chatId: ChatInfo['id']) {
+		return this.http.delete('/users', {
+			data: {
+				users: userIds,
+				chatId
+			}
+		})
+	}
 }

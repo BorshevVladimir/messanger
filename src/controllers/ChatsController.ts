@@ -66,6 +66,15 @@ class ChatsController {
 			console.error(`Ошибка при добавлении пользователей в чат: ${err}`)
 		}
 	}
+
+	async deleteUser (userId: ChatUser['id'], chatId: ChatInfo['id']) {
+		try {
+			await this.api.deleteUser([userId], chatId)
+			await this.fetchUsers(chatId)
+		} catch (err) {
+			console.error(`Ошибка удаления пользователя из чата: ${err}`)
+		}
+	}
 }
 
 const chatsController = new ChatsController()
