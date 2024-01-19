@@ -23,7 +23,6 @@ import { ChatCard } from './partial/components/chat-card'
 import { Form } from './partial/components/form'
 import { FormFile } from './partial/components/form-file'
 import { Span } from './partial/components/span'
-import { AttachBlock } from './partial/components/attach-block'
 import { SettingsOverlay } from './partial/components/settings-overlay'
 import { PopupAddChat } from './partial/components/popup-add-chat'
 import { PopupChatUsers } from './partial/components/popup-chat-users'
@@ -48,7 +47,6 @@ registerComponent('ChatCard', ChatCard)
 registerComponent('Form', Form)
 registerComponent('FormFile', FormFile)
 registerComponent('Span', Span)
-registerComponent('AttachBlock', AttachBlock)
 registerComponent('SettingsOverlay', SettingsOverlay)
 registerComponent('PopupAddChat', PopupAddChat)
 registerComponent('PopupChatUsers', PopupChatUsers)

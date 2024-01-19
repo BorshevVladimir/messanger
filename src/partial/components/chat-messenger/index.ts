@@ -22,9 +22,6 @@ class ChatMessengerBase extends Block {
 	constructor (props: ChatMessengerProps) {
 		super({
 			...props,
-			attachHandle: () => {
-				this.refs['attach-block'].showToggle()
-			},
 			togglePopupUsersHandle: () => {
 				this.refs['popup-chat-users'].showToggle()
 			},
