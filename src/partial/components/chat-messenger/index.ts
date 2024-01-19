@@ -5,6 +5,7 @@ import { ChatUser, Message } from '../../../typings'
 import { formatTime } from '../../../utils/formatTime'
 import { Block } from '../../../utils/Block'
 import template from './chat-messenger.hbs'
+import { Input } from '../input'
 import './chat-messenger.scss'
 
 type ChatMessengerProps = {
@@ -41,11 +42,11 @@ class ChatMessengerBase extends Block {
 				this.refs['popup-confirm-delete'].hide()
 			},
 			sendMessage: () => {
-				const input = this.refs['messenger-input'].element as HTMLInputElement
-				const message = input.value
+				const input = this.refs['messenger-input'] as Input
+				const message = input.getValue()
 				if (message) {
 					messagesController.sendMessage(this.props.chatInfo.id, message)
-					input.value = ''
+					input.clear()
 				}
 			},
 			onUserAdd: (login: ChatUser['login']) => {
