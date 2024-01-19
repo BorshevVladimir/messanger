@@ -14,7 +14,8 @@ type State = {
 	chats?: ChatInfo[],
 	selectedChat?: ChatInfo['id'] | undefined,
 	messages?: Record<ChatInfo['id'], Message[]>
-	chatUsers?: ChatUser[]
+	chatUsers?: ChatUser[],
+	chatsFilter?: string
 }
 
 export function withStore (mapStateToProps: (state: State) => Indexed) {

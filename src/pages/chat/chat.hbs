@@ -7,7 +7,7 @@
 			{{#CircleButton dark=true onClick=userPageClickHandle }}
 				<i class='fa-solid fa-user-gear'></i>
 			{{/CircleButton}}
-			{{{Input classes="chat-search__input" placeholder='Поиск'}}}
+			{{{Input classes="chat-search__input" placeholder='Фильтр по названию' onChange=onFilterChange value=chatsFilter}}}
 			{{#CircleButton onClick=addChatHandle }}
 				<i class='fa-solid fa-plus' /></i>
 			{{/CircleButton}}

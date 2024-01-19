@@ -1,4 +1,4 @@
-import { withStore } from '../../store/Store'
+import { withStore, store } from '../../store/Store'
 import { Block } from '../../utils/Block'
 import template from './chat.hbs'
 import { chatsController } from '../../controllers/ChatsController'
@@ -22,6 +22,10 @@ class ChatPageBase extends Block {
 			},
 			addChatHandle: () => {
 				this.refs['popup-add-chat'].showToggle()
+			},
+			onFilterChange: (e: InputEvent) => {
+				const { value } = e.target as HTMLInputElement
+				store.set('chatsFilter', value)
 			}
 		})
 	}
@@ -35,6 +39,18 @@ class ChatPageBase extends Block {
 	}
 }
 
-const withChats = withStore((state) => ({ chats: [ ...(state.chats || []) ], selectedChat: state.selectedChat }))
+const withChats = withStore((state) => {
+	let chats: ChatInfo[] = state.chats || []
+
+	const filterValue = state.chatsFilter || ''
+
+	if (filterValue) {
+		chats = chats.filter(chat => {
+			return chat.title.toLocaleLowerCase().includes(filterValue.toLocaleLowerCase())
+		})
+	}
+
+	return { chats: [ ...chats ], selectedChat: state.selectedChat, chatsFilter: state.chatsFilter }
+})
 
 export const ChatPage = withChats(ChatPageBase)
