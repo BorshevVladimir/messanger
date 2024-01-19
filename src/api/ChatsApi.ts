@@ -45,4 +45,8 @@ export class ChatsApi {
 			}
 		})
 	}
+
+	changeAvatar (payload: FormData) {
+		return this.http.put('/avatar', { data: payload })
+	}
 }

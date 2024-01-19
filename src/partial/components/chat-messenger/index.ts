@@ -54,6 +54,10 @@ class ChatMessengerBase extends Block {
 			},
 			onUserDelete: (userId: ChatUser['id']) => {
 				chatsController.deleteUser(userId, this.props.chatInfo.id)
+			},
+			onAvatarChange: (data: FormData) => {
+				data.append('chatId', this.props.chatInfo.id)
+				chatsController.changeAvatar(data)
 			}
 		})
 	}

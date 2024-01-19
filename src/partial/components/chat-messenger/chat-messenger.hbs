@@ -1,10 +1,9 @@
 <div class="chat-messenger-wrapper">
 	<div class='chat-header'>
 		<div class='chat-info'>
-			{{{Avatar
-				src=chatInfo.avatar
-				alt=chatInfo.title
-			}}}
+			{{#UploadFile name='avatar' onSelect=onAvatarChange accept='image/*' }}
+					{{{ Avatar src=chatInfo.avatar alt=chatInfo.title }}}
+			{{/UploadFile }}
 			<h3 class='chat-info__name'>Чат “<span>{{chatInfo.title}}</span>”</h3>
 		</div>
 

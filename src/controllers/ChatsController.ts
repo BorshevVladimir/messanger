@@ -10,7 +10,7 @@ class ChatsController {
 	async fetchChats () {
 		const chats = await this.api.read()
 
-		chats.map(async (chat) => {
+		chats.forEach(async (chat) => {
 			const token = await this.getToken(chat.id)
 			await messagesController.connect(chat.id, token)
 		})
@@ -73,6 +73,16 @@ class ChatsController {
 			await this.fetchUsers(chatId)
 		} catch (err) {
 			console.error(`Ошибка удаления пользователя из чата: ${err}`)
+		}
+	}
+
+	async changeAvatar (data: FormData) {
+		try {
+			await this.api.changeAvatar(data)
+			alert('Аватарка чата успешо изменена')
+			this.fetchChats() // Ради обновления одной аватарки приходится заново переключаться к чатам
+		} catch (err) {
+			console.error(err)
 		}
 	}
 }
