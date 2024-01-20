@@ -2,11 +2,11 @@ import { Block } from '../../utils/Block'
 import template from './login.hbs'
 import './login.scss'
 import { InputValidator } from '../../utils/InputValidator'
-import type { FormTextField } from '../../typings'
-import { getFormData } from '../../utils/formSubmit'
+import type { FormErrorDescription, FormTextField } from '../../typings'
 import { router } from '../../router/Router'
 import { authController } from '../../controllers/AuthController'
 import type { SigninRequestData } from '../../api/AuthApi'
+import { Indexed } from '../../utils/isObject'
 
 const formInputs: Record<string, FormTextField> = {
 	login: {
@@ -35,10 +35,10 @@ export class LoginPage extends Block {
 				e.preventDefault()
 				router.go('/sign-up')
 			},
-			onSubmit: (e: SubmitEvent) => {
-				e.preventDefault()
-				const formData = getFormData(e.target as HTMLFormElement)
-				authController.signin(formData as SigninRequestData)
+			onFormSubmit: (data: { formValues: Indexed, error: FormErrorDescription[] }) => {
+				if (data.error.length === 0) {
+					authController.signin(data.formValues as SigninRequestData)
+				}
 			}
 		})
 	}

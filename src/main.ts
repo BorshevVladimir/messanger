@@ -31,6 +31,7 @@ import { PopupConfirm } from './partial/components/popup-confirm'
 import { ChatMessenger } from './partial/components/chat-messenger'
 import { UploadFile } from './partial/components/upload-file'
 import { ChatMessage } from './partial/components/chat-message'
+import { ComplexForm } from './partial/components/complex-form'
 import { authController } from './controllers/AuthController'
 
 registerComponent('Button', Button)
@@ -55,6 +56,7 @@ registerComponent('ChatMessenger', ChatMessenger)
 registerComponent('PopupConfirm', PopupConfirm)
 registerComponent('UploadFile', UploadFile)
 registerComponent('ChatMessage', ChatMessage)
+registerComponent('ComplexForm', ComplexForm)
 
 enum Routes {
 	Index = '/',

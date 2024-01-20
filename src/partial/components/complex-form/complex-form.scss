@@ -1,0 +1,14 @@
+.complex-form {
+	&__item {
+		margin-bottom: 12px;
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+
+	&__submit {
+		display: flex;
+		justify-content: center;
+	}
+}
