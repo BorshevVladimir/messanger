@@ -1,8 +1,10 @@
 {{#PageOverlay}}
 	{{#Card title='Авторизация'}}
-	{{{ ComplexForm id='login-form' formInputs=formInputs onFormSubmit=onFormSubmit submitButtonTitle="Войти" }}}
-		{{#Link onClick=goToRegistrationPage }}
-			Нет аккаунта?
-		{{/Link}}
+		{{{ ComplexForm id='login-form' formInputs=formInputs onFormSubmit=onFormSubmit submitButtonTitle="Войти" }}}
+		<div class="form-link">
+			{{#Link onClick=goToRegistrationPage }}
+				Нет аккаунта?
+			{{/Link}}
+		</div>
 	{{/Card}}
 {{/PageOverlay}}
