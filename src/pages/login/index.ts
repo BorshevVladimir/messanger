@@ -35,8 +35,8 @@ export class LoginPage extends Block {
 				e.preventDefault()
 				router.go('/sign-up')
 			},
-			onFormSubmit: (data: { formValues: Indexed, error: FormErrorDescription[] }) => {
-				if (data.error.length === 0) {
+			onFormSubmit: (data: { formValues: Indexed, errors: FormErrorDescription[] }) => {
+				if (data.errors.length === 0) {
 					authController.signin(data.formValues as SigninRequestData)
 				}
 			}
