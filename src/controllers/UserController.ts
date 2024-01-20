@@ -21,7 +21,6 @@ export class UserController {
 			await this.api.changeProfile(data)
 			alert('Профиль успешо изменен')
 			await authController.fetchUser()
-			router.go('/messenger')
 		} catch (err) {
 			console.error(err)
 		}
