@@ -2,11 +2,11 @@ import { Block } from '../../utils/Block'
 import template from './profile-settings.hbs'
 import './profile-settings.scss'
 import { InputValidator } from '../../utils/InputValidator'
-import { getFormData } from '../../utils/formSubmit'
-import type { FormTextField } from '../../typings'
+import type { FormTextField, FormErrorDescription } from '../../typings'
 import { router } from '../../router/Router'
 import { withStore } from '../../store/Store'
 import { userController } from '../../controllers/UserController'
+import { Indexed } from '../../utils/isObject'
 
 const formInputs: Record<string, FormTextField> = {
 	email: {
@@ -53,21 +53,16 @@ const formInputs: Record<string, FormTextField> = {
 
 class ProfileSettingsPageBase extends Block {
 	init () {
-		for (const key in formInputs) {
-			formInputs[key].value = this.props[key] as string
-		}
-
 		this.setProps({
 			formInputs,
 			goToChatPage (e: MouseEvent) {
 				e.preventDefault()
 				router.go('/messenger')
 			},
-			onSubmit: (e: SubmitEvent) => {
-				e.preventDefault()
-				// TODO: Add validation
-				const formData = getFormData(e.target as HTMLFormElement)
-				userController.changeProfile(formData)
+			onFormSubmit: (data: { formValues: Indexed, errors: FormErrorDescription[] }) => {
+				if (data.errors.length === 0) {
+					userController.changeProfile(data.formValues)
+				}
 			},
 			onAvatarChange: (data: FormData) => {
 				userController.changeAvatar(data)
@@ -76,7 +71,13 @@ class ProfileSettingsPageBase extends Block {
 	}
 
 	render () {
-		return this.compile(template, this.props)
+		const formInputsWithValues = {} as Record<string, FormTextField>
+		Object.keys(formInputs).forEach(key => {
+			formInputsWithValues[key] = {...formInputs[key], value: this.props[key] as string}
+		})
+
+		const newProps = { ...this.props, formInputs: formInputsWithValues}
+		return this.compile(template, newProps)
 	}
 }
 
