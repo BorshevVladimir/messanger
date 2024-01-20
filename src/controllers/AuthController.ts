@@ -26,7 +26,7 @@ class AuthController {
 	async signup (data: SignupRequestData) {
 		try {
 			this.api.signup(data)
-			router.go('/')
+			router.go('/messenger')
 		} catch (err) {
 			console.error(err)
 		}
