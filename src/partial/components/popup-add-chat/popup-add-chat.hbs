@@ -1,11 +1,4 @@
 <div class="popup-add-chat">
-	<form>
 		<h3 class="popup-add-chat__title">Создать чат</h3>
-		{{#Form onSubmit=onSave}}
-		{{{FormInput placeholder='Введите название чата' label="Название чата" name="chat-name"}}}
-			<div class="popup-add-chat__actions-wrapper">
-				{{#Button }}Добавить{{/Button}}
-			</div>
-		{{/Form}}
-	</form>
+		{{{ ComplexForm id='new-chat' formInputs=formInputs onFormSubmit=onFormSubmit submitButtonTitle="Добавить" }}}
 </div>

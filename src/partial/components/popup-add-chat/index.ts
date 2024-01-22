@@ -1,17 +1,30 @@
 import { chatsController } from '../../../controllers/ChatsController'
 import { Block } from '../../../utils/Block'
-import { getFormData } from '../../../utils/formSubmit'
 import template from './popup-add-chat.hbs'
+import type { FormTextField, FormErrorDescription } from '../../../typings'
+import { InputValidator } from '../../../utils/InputValidator'
 import './popup-add-chat.scss'
+import { Indexed } from '../../../utils/isObject'
+
+const formInputs: Record<string, FormTextField> = {
+	chat_name: {
+		ref: 'chat_name',
+		label: 'Название чата',
+		placeholder: 'Введите название чата',
+		error: 'Название не может быть пустым',
+		type: 'text',
+		validator: InputValidator.validateNotEmpty,
+	}
+}
 
 export class PopupAddChat extends Block {
 	constructor () {
 		super({
-			onSave: (e: SubmitEvent) => {
-				e.preventDefault()
-				const formData = getFormData(e.target as HTMLFormElement)
-				const chatName = formData['chat-name'] as string
-				chatsController.create(chatName)
+			formInputs,
+			onFormSubmit: (data: { formValues: Indexed, errors: FormErrorDescription[] }) => {
+				if (data.errors.length === 0) {
+					chatsController.create(data.formValues['chat_name'] as string)
+				}
 			}
 		})
 	}
