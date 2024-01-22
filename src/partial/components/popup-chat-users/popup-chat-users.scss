@@ -10,6 +10,7 @@
 	width: 300px;
 	background-color: $white-color;
 	border: 1px solid $dark-gray-color;
+	z-index: 100;
 
 	&__title {
 		text-align: center;
