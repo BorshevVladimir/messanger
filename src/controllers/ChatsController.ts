@@ -32,10 +32,14 @@ class ChatsController {
 	}
 
 	async deleteChat (id: ChatInfo['id']) {
-		await this.api.delete(id)
-		alert('Чат успешно удален')
-		store.set('selectedChat', undefined)
-		this.fetchChats()
+		try {
+			await this.api.delete(id)
+			alert('Чат успешно удален')
+			store.set('selectedChat', undefined)
+			this.fetchChats()
+		} catch (err) {
+			console.error(`Ошибка при удалении чата: ${err}`)
+		}
 	}
 
 	getToken (id: ChatInfo['id']) {

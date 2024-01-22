@@ -33,8 +33,12 @@ class AuthController {
 	}
 
 	async fetchUser () {
-		const user = await this.api.user()
-		store.set('user', user)
+		try {
+			const user = await this.api.user()
+			store.set('user', user)
+		} catch (err) {
+			console.error(`Ошибка получения информации о пользователе: ${err}`)
+		}
 	}
 
 	async logout () {
