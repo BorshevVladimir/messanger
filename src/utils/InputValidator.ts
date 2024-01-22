@@ -45,7 +45,7 @@ export abstract class InputValidator {
 	 * @param {string} value - входная строка для поиска
 	 * @description Не должно быть пустым
 	 */
-	static validateMessage: Validator = (value) => {
+	static validateNotEmpty: Validator = (value) => {
 		return value.trim().length !== 0
 	}
 }
