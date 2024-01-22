@@ -7,6 +7,7 @@ import { Block } from '../../../utils/Block'
 import template from './chat-messenger.hbs'
 import { Input } from '../input'
 import './chat-messenger.scss'
+import { PopupChatUsers } from '../popup-chat-users'
 
 type ChatMessengerProps = {
 	id: number
@@ -48,7 +49,7 @@ class ChatMessengerBase extends Block {
 			},
 			onUserAdd: (login: ChatUser['login']) => {
 				chatsController.addUser(login, this.props.chatInfo.id)
-				this.refs['popup-chat-users'].clearInput()
+				;(this.refs['popup-chat-users'] as PopupChatUsers).clearInput()
 			},
 			onUserDelete: (userId: ChatUser['id']) => {
 				chatsController.deleteUser(userId, this.props.chatInfo.id)
@@ -61,7 +62,10 @@ class ChatMessengerBase extends Block {
 	}
 
 	init () {
-		chatsController.fetchUsers(this.props.chatInfo.id)
+		const chatId = this.props?.chatInfo?.id
+		if (chatId) {
+			chatsController.fetchUsers(chatId)
+		}
 	}
 	render () {
 		return this.compile(template, this.props)
