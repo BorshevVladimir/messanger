@@ -6,6 +6,7 @@ class Router {
 	public routes: Route[] = []
 	public history = window.history
 	private _currentRoute: Route | null = null
+	private _notFoundRoute: Route | null = null
 	private _rootQuery: string
 
 	constructor (rootQuery: string) {
@@ -23,6 +24,11 @@ class Router {
 		return this
 	}
 
+	useNotFound (block: new () => Block) {
+		this._notFoundRoute = new Route('', block, { rootQuery: this._rootQuery })
+		return this
+	}
+
 	start () {
 		window.addEventListener('popstate', (e) => {
 			const path = (e.currentTarget as Window).location.pathname
@@ -32,10 +38,10 @@ class Router {
 		this._onRoute(window.location.pathname)
 	}
 
-	_onRoute (pathname: string) {
-		const route = this.getRoute(pathname)
+	private _onRoute (pathname: string) {
+		const route = this._getRoute(pathname) || this._notFoundRoute
 		if (!route) {
-			return
+			throw new Error(`Для маршрута не найден ${pathname} подходящий элемент`)
 		}
 		this._currentRoute?.leave()
 
@@ -56,7 +62,7 @@ class Router {
 		this.history.forward()
 	}
 
-	getRoute (pathname: string) {
+	private _getRoute (pathname: string) {
 		return this.routes.find((route) => route.match(pathname))
 	}
 }

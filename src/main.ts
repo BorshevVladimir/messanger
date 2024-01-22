@@ -74,8 +74,8 @@ router
 	.use(Routes.ProfileSettings, ProfileSettingsPage)
 	.use(Routes.Messenger, ChatPage)
 	.use(Routes.ChangePassword, ProfileChangePasswordPage)
-	.use(Routes.Error404, Error404Page)
 	.use(Routes.Error500, Error500Page)
+	.useNotFound(Error404Page)
 
 window.addEventListener('DOMContentLoaded', async () => {
 	let isProtectedRoute = true
