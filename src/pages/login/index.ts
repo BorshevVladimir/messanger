@@ -10,7 +10,6 @@ import { Indexed } from '../../utils/isObject'
 
 const formInputs: Record<string, FormTextField> = {
 	login: {
-		ref: 'login',
 		label: 'Логин',
 		placeholder: 'Введите логин',
 		error: 'Ошибка в логине',
@@ -18,7 +17,6 @@ const formInputs: Record<string, FormTextField> = {
 		validator: InputValidator.validateLogin,
 	},
 	password: {
-		ref: 'password',
 		label: 'Пароль',
 		placeholder: 'Введите пароль',
 		error: 'Ошибка в пароле',

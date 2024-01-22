@@ -5,7 +5,6 @@ import { Indexed } from '../../../utils/isObject'
 import template from './complex-form.hbs'
 import './complex-form.scss'
 
-
 type ComplexFormProps = {
 	id: string,
 	classes?: string,
@@ -32,9 +31,7 @@ export class ComplexForm extends Block {
 
 		Object.keys(formInputs).forEach(name => {
 			const input = formInputs[name]
-			const ref = input.ref
-
-			const formInput = this.refs[ref] as FormInput
+			const formInput = this.refs[name] as FormInput
 
 			const isValid = formInput.checkIsValid()
 			if (!isValid) {

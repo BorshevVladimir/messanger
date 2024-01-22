@@ -10,7 +10,6 @@ import { Indexed } from '../../utils/isObject'
 
 const formInputs: Record<string, FormTextField> = {
 	old_password: {
-		ref: 'old_password',
 		label: 'Старый пароль',
 		placeholder: 'Введите старый пароль',
 		error: 'Неподходящий пароль',
@@ -18,7 +17,6 @@ const formInputs: Record<string, FormTextField> = {
 		validator: InputValidator.validatePassword,
 	},
 	password: {
-		ref: 'password',
 		label: 'Новый пароль',
 		placeholder: 'Введите новый пароль',
 		error: 'Неподходящий пароль',
@@ -26,7 +24,6 @@ const formInputs: Record<string, FormTextField> = {
 		validator: InputValidator.validatePassword,
 	},
 	password_repeat: {
-		ref: 'password_repeat',
 		label: 'Новый пароль (еще раз)',
 		placeholder: 'Повторите ввод пароля',
 		error: 'Неподходящий пароль',

@@ -10,7 +10,6 @@ import { Indexed } from '../../utils/isObject'
 
 const formInputs: Record<string, FormTextField> = {
 	email: {
-		ref: 'email',
 		label: 'Почта',
 		placeholder: 'Введите электронную почту',
 		error: 'Неподходящий email',
@@ -18,7 +17,6 @@ const formInputs: Record<string, FormTextField> = {
 		validator: InputValidator.validateEmail,
 	},
 	login: {
-		ref: 'login',
 		label: 'Логин',
 		placeholder: 'Введите логин',
 		error: 'Неподходящий логин',
@@ -26,7 +24,6 @@ const formInputs: Record<string, FormTextField> = {
 		validator: InputValidator.validateLogin,
 	},
 	first_name: {
-		ref: 'name',
 		label: 'Имя',
 		placeholder: 'Введите имя',
 		error: 'Неподходящее имя',
@@ -34,7 +31,6 @@ const formInputs: Record<string, FormTextField> = {
 		validator: InputValidator.validateName,
 	},
 	second_name: {
-		ref: 'second_name',
 		label: 'Фамилия',
 		placeholder: 'Введите фамилию',
 		error: 'Неподходящая фамилия',
@@ -42,7 +38,6 @@ const formInputs: Record<string, FormTextField> = {
 		validator: InputValidator.validateName,
 	},
 	phone: {
-		ref: 'phone',
 		label: 'Телефон',
 		placeholder: 'Введите телефон',
 		error: 'Неподходящий телефон',

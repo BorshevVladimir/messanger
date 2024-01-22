@@ -1,7 +1,7 @@
 {{#Form onSubmit=onSubmit classes='complex-form' id=id }}
 	{{#each formInputs}}
 		{{{FormInput
-					ref=this.ref
+					ref=@key
 					label=this.label
 					placeholder=this.placeholder
 					classes='complex-form__item'
