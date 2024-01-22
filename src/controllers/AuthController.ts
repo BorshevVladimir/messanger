@@ -38,6 +38,7 @@ class AuthController {
 			store.set('user', user)
 		} catch (err) {
 			console.error(`Ошибка получения информации о пользователе: ${err}`)
+			throw new Error(err) // Эта ошибка отлавливается в main.ts для разграничения доступа
 		}
 	}
 
