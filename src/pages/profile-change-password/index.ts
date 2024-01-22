@@ -2,15 +2,15 @@ import { Block } from '../../utils/Block'
 import template from './profile-change-password.hbs'
 import './profile-change-password.scss'
 import { InputValidator } from '../../utils/InputValidator'
-import { getFormData } from '../../utils/formSubmit'
-import type { FormTextField } from '../../typings'
+import type { FormTextField, FormErrorDescription } from '../../typings'
 import { router } from '../../router/Router'
 import { userController } from '../../controllers/UserController'
 import type { ChangePasswordRequestData } from '../../api/UserApi'
+import { Indexed } from '../../utils/isObject'
 
 const formInputs: Record<string, FormTextField> = {
 	old_password: {
-		ref: 'password',
+		ref: 'old_password',
 		label: 'Старый пароль',
 		placeholder: 'Введите старый пароль',
 		error: 'Неподходящий пароль',
@@ -43,18 +43,19 @@ export class ProfileChangePasswordPage extends Block {
 				e.preventDefault()
 				router.go('/messenger')
 			},
-			onSubmit: (e: SubmitEvent) => {
-				e.preventDefault()
-				const formData = getFormData(e.target as HTMLFormElement)
-				// TODO: Add validation
-				const { old_password: oldPassword, password: newPassword, password_repeat: passwordRepeat } = formData
+			onFormSubmit: (data: { formValues: Indexed, errors: FormErrorDescription[] }) => {
+				const { old_password: oldPassword, password: newPassword, password_repeat: passwordRepeat } = data.formValues
+
+				console.log(oldPassword, newPassword, passwordRepeat)
 
 				if (newPassword !== passwordRepeat) {
 					alert('Пароли не совпадают')
 					return
 				}
 
-				userController.chagePassword({ oldPassword, newPassword } as ChangePasswordRequestData)
+				if (data.errors.length === 0) {
+					userController.chagePassword({ oldPassword, newPassword } as ChangePasswordRequestData)
+				}
 			}
 		})
 	}
