@@ -106,10 +106,6 @@ export class Block {
 		return this._element
 	}
 
-	get references () {
-		return this.refs
-	}
-
 	private _getChildrenAndProps (propsWithChildren: Props) {
 		const children: Children = {}
 		const props: Omit<Props, 'children'> = {}
@@ -211,7 +207,7 @@ export class Block {
 	hide () {
 		this.getContent()!.style.display = 'none'
 	}
-
+	// FIXME: Попробовать избавиться от этого метода. Такой метод по логике должен быть у конкретных компонентов
 	showToggle () {
 		if (this.getContent()!.style.display === 'block') {
 			this.getContent()!.style.display = 'none'
