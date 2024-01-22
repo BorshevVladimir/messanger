@@ -10,6 +10,7 @@
 	background-color: $white-color;
 	border-radius: $border-radius;
 	border: 1px solid $dark-gray-color;
+	z-index: 100;
 
 	&__title {
 		text-align: center;
