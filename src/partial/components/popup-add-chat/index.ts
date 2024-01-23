@@ -8,7 +8,6 @@ import { Indexed } from '../../../utils/isObject'
 
 const formInputs: Record<string, FormTextField> = {
 	chat_name: {
-		ref: 'chat_name',
 		label: 'Название чата',
 		placeholder: 'Введите название чата',
 		error: 'Название не может быть пустым',
