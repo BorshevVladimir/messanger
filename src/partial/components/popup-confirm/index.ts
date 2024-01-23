@@ -7,7 +7,7 @@ type PopupConfirmProps = {
 	onCancel?: () => void
 }
 
-export class PopupConfirm extends Block {
+export class PopupConfirm extends Block<PopupConfirmProps> {
 	constructor (props: PopupConfirmProps) {
 		super(props)
 	}
