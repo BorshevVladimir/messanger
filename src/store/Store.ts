@@ -1,6 +1,5 @@
 import { EventBus } from '../utils/EventBus'
 import { set } from '../utils/set'
-import type { Indexed } from '../utils/isObject'
 import type { Block } from '../utils/Block'
 import { deepEqual } from '../utils/deepEqual'
 import type { User, ChatInfo, Message, ChatUser } from '../typings'
@@ -18,10 +17,10 @@ type State = {
 	chatsFilter?: string
 }
 
-export function withStore (mapStateToProps: (state: State) => Indexed) {
-	return function connect (Component: typeof Block) {
+export function withStore<SP extends Record<string, any>> (mapStateToProps: (state: State) => SP) {
+	return function connect<P extends Record<string, any>> (Component: typeof Block<SP | P>) {
 		return class extends Component {
-			constructor (props: Indexed) {
+			constructor (props: P) {
 
 				let prevState = mapStateToProps(store.getState())
 				super({ ...props, ...prevState })
@@ -54,5 +53,4 @@ class Store extends EventBus {
 }
 
 const store = new Store()
-window.store = store
 export { store }
