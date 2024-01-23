@@ -7,7 +7,6 @@ import { Block } from '../../../utils/Block'
 import template from './chat-messenger.hbs'
 import { Input } from '../input'
 import './chat-messenger.scss'
-import { PopupChatUsers } from '../popup-chat-users'
 
 type ChatMessengerProps = {
 	id: number
@@ -16,10 +15,12 @@ type ChatMessengerProps = {
 	title: string
 	lastMessage?: string
 	lastMessageTime?: string
-	messageCount?: number
+	messageCount?: number,
+	togglePopupUsersHandle: () => void
+	addUserHandle: () => void
 }
 
-class ChatMessengerBase extends Block {
+class ChatMessengerBase extends Block<ChatMessengerProps> {
 	constructor (props: ChatMessengerProps) {
 		super({
 			...props,
@@ -46,13 +47,6 @@ class ChatMessengerBase extends Block {
 					messagesController.sendMessage(this.props.chatInfo.id, message)
 					input.clear()
 				}
-			},
-			onUserAdd: (login: ChatUser['login']) => {
-				chatsController.addUser(login, this.props.chatInfo.id)
-				;(this.refs['popup-chat-users'] as PopupChatUsers).clearInput()
-			},
-			onUserDelete: (userId: ChatUser['id']) => {
-				chatsController.deleteUser(userId, this.props.chatInfo.id)
 			},
 			onAvatarChange: (data: FormData) => {
 				data.append('chatId', this.props.chatInfo.id)
@@ -89,22 +83,19 @@ function formatMessages (messages: Message[], chatUsers: ChatUser[]) {
 const withChat = withStore(state => {
 	const chatId = state.selectedChat
 	const chatInfo = state.chats?.find(chat => chat.id === chatId)
-	const chatUsers = [...(state.chatUsers || [])]
 
 	if (!chatId || !chatInfo) {
 		return {
 			messages: [],
 			chatInfo: undefined,
-			chatUsers
 		}
 	}
 
 	const messages = state?.messages?.[chatId] || []
 
 	return {
-		messages: formatMessages(messages, state.chatUsers || []), // TODO: Вывести, но сейчас все чаты пустые
+		messages: formatMessages(messages, state.chatUsers || []),
 		chatInfo: { ...chatInfo, avatar: chatInfo.avatar },
-		chatUsers: [...chatUsers.map(user => ({...user, isAdmin: user.role === 'admin' }))]
 	}
 })
 

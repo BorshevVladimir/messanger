@@ -25,13 +25,13 @@ import { FormFile } from './partial/components/form-file'
 import { Span } from './partial/components/span'
 import { SettingsOverlay } from './partial/components/settings-overlay'
 import { PopupAddChat } from './partial/components/popup-add-chat'
-import { PopupChatUsers } from './partial/components/popup-chat-users'
 import { PopupAddUser } from './partial/components/popup-add-user'
 import { PopupConfirm } from './partial/components/popup-confirm'
 import { ChatMessenger } from './partial/components/chat-messenger'
 import { UploadFile } from './partial/components/upload-file'
 import { ChatMessage } from './partial/components/chat-message'
 import { ComplexForm } from './partial/components/complex-form'
+import { ChatUsers } from './partial/components/chat-users'
 import { authController } from './controllers/AuthController'
 
 registerComponent('Button', Button)
@@ -50,13 +50,13 @@ registerComponent('FormFile', FormFile)
 registerComponent('Span', Span)
 registerComponent('SettingsOverlay', SettingsOverlay)
 registerComponent('PopupAddChat', PopupAddChat)
-registerComponent('PopupChatUsers', PopupChatUsers)
 registerComponent('PopupAddUser', PopupAddUser)
 registerComponent('ChatMessenger', ChatMessenger)
 registerComponent('PopupConfirm', PopupConfirm)
 registerComponent('UploadFile', UploadFile)
 registerComponent('ChatMessage', ChatMessage)
 registerComponent('ComplexForm', ComplexForm)
+registerComponent('ChatUsers', ChatUsers)
 
 enum Routes {
 	Index = '/',
