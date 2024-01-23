@@ -1,7 +1,7 @@
 import { chatsController } from '../../../controllers/ChatsController'
 import { messagesController } from '../../../controllers/MessagesController'
-import { withStore, store } from '../../../store/Store'
-import { ChatUser, Message } from '../../../typings'
+import { withStore, store,  } from '../../../store/Store'
+import { ChatUser, Message, ChatInfo } from '../../../typings'
 import { formatTime } from '../../../utils/formatTime'
 import { Block } from '../../../utils/Block'
 import template from './chat-messenger.hbs'
@@ -15,9 +15,15 @@ type ChatMessengerProps = {
 	title: string
 	lastMessage?: string
 	lastMessageTime?: string
-	messageCount?: number,
+	messageCount?: number
 	togglePopupUsersHandle: () => void
 	addUserHandle: () => void
+	deleteChatHandle: () => void
+	onChatDeleteConfirm: () => void
+	onChatDeleteCancel: () => void
+	sendMessage: () => void
+	onAvatarChange: (data: FormData) => void
+	chatInfo: ChatInfo
 }
 
 class ChatMessengerBase extends Block<ChatMessengerProps> {
@@ -49,7 +55,7 @@ class ChatMessengerBase extends Block<ChatMessengerProps> {
 				}
 			},
 			onAvatarChange: (data: FormData) => {
-				data.append('chatId', this.props.chatInfo.id)
+				data.append('chatId', String(this.props.chatInfo.id))
 				chatsController.changeAvatar(data)
 			}
 		})
