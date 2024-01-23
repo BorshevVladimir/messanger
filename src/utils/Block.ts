@@ -6,13 +6,13 @@ import { TemplateDelegate } from 'handlebars'
 
 type Children = Record<string, Block | Block[]>
 
-type Props = {
-	childrens?: Block | Block[] | string
+type RawProps = {
+	children?: Children
 	events?: Record<string, (e: Event) => void>
 	[key: string]: unknown
 }
 
-export class Block {
+export abstract class Block<TProps extends RawProps = RawProps> {
 	static EVENTS = {
 		INIT: 'init',
 		FLOW_CDM: 'flow:component-did-mount',
@@ -20,7 +20,7 @@ export class Block {
 		FLOW_CDU: 'flow:component-did-update'
 	}
 
-	protected props: Props
+	protected props: Omit<TProps, 'children'>
 	private readonly _eventBus: EventBus
 
 	public readonly id: UniqueId
@@ -30,9 +30,8 @@ export class Block {
 
 	private _element: HTMLElement | null = null
 
-	constructor (propsWithChildren: Props = {}) {
+	constructor (propsWithChildren: TProps = {} as TProps) { // FIXME: Почему без as TProps не работает?
 		const { props, children } = this._getChildrenAndProps(propsWithChildren)
-
 		this.children = children
 
 		this.id = generateUniqueId()
@@ -83,18 +82,18 @@ export class Block {
 		this._eventBus.emit(Block.EVENTS.FLOW_CDM)
 	}
 
-	private _componentDidUpdate (oldProps: Props, newProps: Props) {
+	private _componentDidUpdate (oldProps: TProps, newProps: TProps) {
 		const mustUpdate = this.componentDidUpdate(oldProps, newProps)
 		if (mustUpdate) {
 			this._eventBus.emit(Block.EVENTS.FLOW_RENDER)
 		}
 	}
 
-	protected componentDidUpdate (oldProps: Props, newProps: Props): boolean {
+	protected componentDidUpdate (oldProps: TProps, newProps: TProps): boolean {
 		return !deepEqual(oldProps, newProps)
 	}
 
-	setProps = (nextProps: Props) => {
+	setProps = (nextProps: TProps) => {
 		if (!nextProps) {
 			return
 		}
@@ -106,9 +105,9 @@ export class Block {
 		return this._element
 	}
 
-	private _getChildrenAndProps (propsWithChildren: Props) {
+	private _getChildrenAndProps (propsWithChildren: TProps) {
 		const children: Children = {}
-		const props: Omit<Props, 'children'> = {}
+		const props: Omit<TProps, 'children'> = {}
 
 		Object.entries(propsWithChildren).forEach(([key, value]) => {
 			if (
@@ -159,6 +158,7 @@ export class Block {
 	}
 
 	private _addEvents (): void {
+		this.props.events
 		const { events } = this.props
 		if (!events) {
 			return
@@ -180,7 +180,7 @@ export class Block {
 		return this.element
 	}
 
-	private _makePropsProxy (props: Props) {
+	private _makePropsProxy (props: Omit<TProps, 'children'>) {
 		const self = this
 		return new Proxy(props, {
 			get (target, prop) {
@@ -189,7 +189,7 @@ export class Block {
 			},
 			set (target, prop, value) {
 				const oldTarget = deepClone(target)
-				target[prop as string] = value
+				target[prop as keyof TProps] = value
 
 				self._eventBus.emit(Block.EVENTS.FLOW_CDU, oldTarget, target)
 				return true
