@@ -84,7 +84,6 @@ export abstract class Block<Props extends Record<string, any> = any> {
 	}
 
 	protected componentDidUpdate (oldProps: Props, newProps: Props): boolean {
-		// console.log('check', !deepEqual(oldProps, newProps), this, oldProps, newProps)
 		return !deepEqual(oldProps, newProps)
 	}
 
@@ -202,7 +201,6 @@ export abstract class Block<Props extends Record<string, any> = any> {
 	hide () {
 		this.getContent()!.style.display = 'none'
 	}
-	// FIXME: Попробовать избавиться от этого метода. Такой метод по логике должен быть у конкретных компонентов
 	showToggle () {
 		if (this.getContent()!.style.display === 'block') {
 			this.getContent()!.style.display = 'none'
