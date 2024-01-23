@@ -25,7 +25,16 @@ const formInputs: Record<string, FormTextField> = {
 	},
 }
 
-export class LoginPage extends Block {
+type LoginPageProps = {
+	formInputs: Record<string, FormTextField>
+	goToRegistrationPage: (e: MouseEvent) => void
+	onFormSubmit: (data: {
+		formValues: Indexed
+		errors: FormErrorDescription[]
+	}) => void
+}
+
+export class LoginPage extends Block<LoginPageProps> {
 	constructor () {
 		super({
 			formInputs,
@@ -33,11 +42,14 @@ export class LoginPage extends Block {
 				e.preventDefault()
 				router.go('/sign-up')
 			},
-			onFormSubmit: (data: { formValues: Indexed, errors: FormErrorDescription[] }) => {
+			onFormSubmit: (data: {
+				formValues: Indexed
+				errors: FormErrorDescription[]
+			}) => {
 				if (data.errors.length === 0) {
 					authController.signin(data.formValues as SigninRequestData)
 				}
-			}
+			},
 		})
 	}
 
