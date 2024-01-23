@@ -1,5 +1,5 @@
 import { Route } from './Route'
-import { Block } from '../utils/Block'
+import { Block, type BlockConstructable } from '../utils/Block'
 
 class Router {
 	private static __instance: Router
@@ -18,7 +18,7 @@ class Router {
 		Router.__instance = this
 	}
 
-	use (pathname: string, block: new () => Block) {
+	use (pathname: string, block: BlockConstructable) {
 		const route = new Route(pathname, block, { rootQuery: this._rootQuery })
 		this.routes.push(route)
 		return this

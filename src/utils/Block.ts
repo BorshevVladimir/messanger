@@ -6,6 +6,10 @@ import { TemplateDelegate } from 'handlebars'
 
 type Children = Record<string, Block | Block[]>
 
+export interface BlockConstructable<P extends Record<string, any> = any> {
+	new(props: P): Block<P>
+}
+
 export abstract class Block<Props extends Record<string, any> = any> {
 	static EVENTS = {
 		INIT: 'init',

@@ -1,9 +1,10 @@
 import { Block } from '../utils/Block'
 import { deepEqual } from '../utils/deepEqual'
 import { renderDOM } from '../utils/renderDOM'
+import type { BlockConstructable } from '../utils//Block'
 
 type Pathname = string
-type BlockConstructor = new () => Block
+
 type RouteProps = {
 	rootQuery: string
 	[key: string]: unknown
@@ -11,11 +12,11 @@ type RouteProps = {
 
 export class Route {
 	private _pathname: Pathname
-	private _blockClass: BlockConstructor
+	private _blockClass: BlockConstructable
 	private _block: Block | null
 	private _props: RouteProps
 
-	constructor (pathname: Pathname, view: BlockConstructor, props: RouteProps) {
+	constructor (pathname: Pathname, view: BlockConstructable, props: RouteProps) {
 		this._pathname = pathname
 		this._blockClass = view
 		this._block = null
@@ -39,7 +40,7 @@ export class Route {
 
 	render () {
 		if (!this._block) {
-			this._block = new this._blockClass()
+			this._block = new this._blockClass({})
 			renderDOM(this._props.rootQuery, this._block)
 			return
 		}
