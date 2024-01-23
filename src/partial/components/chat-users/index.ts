@@ -3,15 +3,17 @@ import template from './chat-users.hbs'
 import { withStore } from '../../../store/Store'
 import { chatsController } from '../../../controllers/ChatsController'
 import { Input } from '../input'
-import { ChatUser } from '../../../typings'
+import { ChatUser, ChatInfo } from '../../../typings'
 import './chat-users.scss'
 
 type ChatUsersProps = {
 	onUserAdd: () => void
-	onUserDelete: () => void
+	onUserDelete: (userId: ChatUser['id']) => void
+	selectedChat: ChatInfo['id']
+	users?: ChatUser[]
 }
 
-export class ChatUsersBase extends Block {
+export class ChatUsersBase extends Block<ChatUsersProps> {
 	constructor (props: ChatUsersProps) {
 		super({
 			...props,
