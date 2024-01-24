@@ -1,6 +1,5 @@
 import { Block } from '../../utils/Block'
 import template from './login.hbs'
-import './login.scss'
 import { InputValidator } from '../../utils/InputValidator'
 import type { FormErrorDescription, FormTextField } from '../../typings'
 import { router } from '../../router/Router'
