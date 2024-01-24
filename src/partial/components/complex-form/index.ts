@@ -26,7 +26,6 @@ export class ComplexForm extends Block {
 		const errors: FormErrorDescription[] = []
 		const formValues: Indexed = {}
 
-		// FIXME: Типы должны приходить из props через дженерик
 		const formInputs = (this.props.formInputs as Record<string, FormTextField>)
 
 		Object.keys(formInputs).forEach(name => {
