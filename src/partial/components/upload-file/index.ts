@@ -15,7 +15,6 @@ export class UploadFile extends Block {
 		super({
 			...props,
 			onChange: (e: Event) => {
-				console.log(this.props.name)
 				const { target } = e
 				if (target) {
 					const file = (target as HTMLInputElement).files![0]

@@ -43,8 +43,6 @@ export class ProfileChangePasswordPage extends Block {
 			onFormSubmit: (data: { formValues: Indexed, errors: FormErrorDescription[] }) => {
 				const { old_password: oldPassword, password: newPassword, password_repeat: passwordRepeat } = data.formValues
 
-				console.log(oldPassword, newPassword, passwordRepeat)
-
 				if (newPassword !== passwordRepeat) {
 					alert('Пароли не совпадают')
 					return
