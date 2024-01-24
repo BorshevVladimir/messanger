@@ -15,7 +15,6 @@ class AuthController {
 	async signin (data: SigninRequestData) {
 		try {
 			await this.api.signin(data)
-
 			await this.fetchUser()
 			router.go('/messenger')
 		} catch (err) {
@@ -25,7 +24,8 @@ class AuthController {
 
 	async signup (data: SignupRequestData) {
 		try {
-			this.api.signup(data)
+			await this.api.signup(data)
+			await this.fetchUser()
 			router.go('/messenger')
 		} catch (err) {
 			console.error(err)
