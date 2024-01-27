@@ -1,0 +1,36 @@
+@import "/src/utils/variables";
+
+.chat-message {
+	background-color: $white-color;
+	border: 1px solid $gray-color;
+	padding: 20px;
+	border-radius: $border-radius;
+	max-width: 420px;
+
+	&__content {
+		margin: 5px 0;
+	}
+
+	&__time {
+		display: block;
+		text-align: right;
+		font-weight: 300;
+		font-size: 11px;
+		opacity: .8;
+	}
+
+	& img {
+		max-width: 100%;
+	}
+
+	&__user {
+		font-weight: bold;
+		font-size: 13px;
+	}
+
+	&_self {
+		align-self: flex-end;
+		color: $white-color;
+		background-color: $blue-color;
+	}
+}

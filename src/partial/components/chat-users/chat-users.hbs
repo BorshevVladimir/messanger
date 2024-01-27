@@ -1,0 +1,20 @@
+<div class="chat-users">
+	<div class="chat-users__header chat-users-header">
+		<h3 class="chat-users-header__title">Список пользователей</h3>
+	</div>
+	<div class="add-users-block">
+		{{{ Input placeholder='Введите логин для добавления' ref="user-login" classes="add-users-block__input" }}}
+		{{#CircleButton onClick=onUserAdd }}<i class='fa-solid fa-plus' /></i>{{/CircleButton}}
+	</div>
+	<ul class="chat-users__list users-list">
+		{{#each users}}
+			<li class="users-list__item users-list-item">
+				{{{Avatar src=this.avatar alt=this.avatarAlt}}}
+				<span class="users-list-item__name">{{ this.first_name }} {{ this.second_name }}</span>
+				{{#unless this.isAdmin }}
+					{{#CircleButton danger=true onClick=onDelete }}<i class='fa-solid fa-xmark' /></i>{{/CircleButton}}
+				{{/unless }}
+			</li>
+		{{/each}}
+	</ul>
+</div>

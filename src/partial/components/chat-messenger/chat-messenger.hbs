@@ -1,0 +1,46 @@
+<div class="chat-messenger-wrapper">
+	<div class='chat-header'>
+		<div class='chat-info'>
+			{{#UploadFile name='avatar' onSelect=onAvatarChange accept='image/*' }}
+					{{{ Avatar src=chatInfo.avatar alt=chatInfo.title }}}
+			{{/UploadFile }}
+			<h3 class='chat-info__name'>Чат “<span>{{chatInfo.title}}</span>”</h3>
+		</div>
+
+		<div class="chat-actions">
+			{{#CircleButton danger=true onClick=deleteChatHandle }}
+				<i class="fa-solid fa-xmark"></i>
+			{{/CircleButton}}
+			{{{ PopupConfirm title="Действительно удалить?" ref='popup-confirm-delete' onConfirm=onChatDeleteConfirm onCancel=onChatDeleteCancel }}}
+		</div>
+	</div>
+
+			<div class="messages">
+				{{#each messages}}
+					{{{ChatMessage content=this.content time=this.time username=this.username isMine=this.isMine }}}
+					{{!-- <div class="messages__item devider">
+						<p class="devider__text">13 ноября</p>
+					</div>
+
+					<div class="messages__item message message_self">
+						<p class="message__content">
+							<img src="https://www.fotolandscape.com/wp-content/uploads/2014/12/DSC_0225.jpg" alt="Пейзаж" />
+						</p>
+					<span class="message__time">14:58</span>
+					</div> --}}
+			{{/each}}
+		</div>
+
+		<div class="messanger">
+			{{{Input classes="messanger__input" placeholder="Введите сообщение" name="message" ref="messenger-input" }}}
+			<div class="messanger__actions">
+			{{!-- {{#CircleButton success=true }}
+				<i class="fa-solid fa-paperclip"></i>
+			{{/CircleButton}} --}}
+
+			{{#CircleButton onClick=sendMessage }}
+				<i class="fa-solid fa-paper-plane"></i>
+			{{/CircleButton}}
+			</div>
+		</div>
+</div>

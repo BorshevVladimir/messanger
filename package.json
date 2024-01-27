@@ -4,12 +4,12 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --open",
     "build": "tsc --noEmit && vite build",
     "start": "npm run build && node server/app.js",
     "lint": "eslint . --ext .ts",
-		"stylelint": "npx stylelint \"**/*.scss\"",
-		"type-check": "tsc --noEmit",
+    "stylelint": "npx stylelint \"**/*.scss\"",
+    "type-check": "tsc --noEmit",
     "preview": "vite preview"
   },
   "devDependencies": {
@@ -24,6 +24,7 @@
     "vite-plugin-handlebars": "^1.6.0"
   },
   "dependencies": {
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "express-history-api-fallback": "^2.2.1"
   }
 }

@@ -2,7 +2,7 @@
 	<label for="{{name}}" class="form-field__label">
 		{{#if label}}{{label}}{{else}}Подпись к текстовому полю{{/if}}
 	</label>
-	{{{ Input classes="form-field__input" name=name type=type placeholder=placeholder onBlur=onInputBlur value=value validator=validator }}}
+	{{{ Input classes="form-field__input" name=name type=type placeholder=placeholder onBlur=onInputBlur value=value validator=validator ref="input" }}}
 	{{#Span ref='error' classes='form-field__error' }}
 		{{error}}
 	{{/Span}}

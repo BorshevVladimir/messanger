@@ -1,0 +1,12 @@
+.upload-file {
+	display: inline-block;
+	cursor: pointer;
+
+	&:hover {
+		opacity: 0.85;
+	}
+
+	&__input {
+		display: none;
+	}
+}

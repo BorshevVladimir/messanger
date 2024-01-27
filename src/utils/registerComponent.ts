@@ -1,7 +1,7 @@
 import { Block } from './Block'
 import Handlebars, { type HelperOptions } from 'handlebars'
 
-export function registerComponent (name: string, Component: typeof Block) {
+export function registerComponent <TComponent extends new (hash: any) => Block> (name: string, Component: TComponent) {
 	if (name in Handlebars.helpers) {
 		throw new Error(`Компонент ${name} уже зарегистрирован`)
 	}

@@ -1,26 +1,10 @@
 {{#PageOverlay}}
 	{{#Card title='Регистрация'}}
-		{{#Form classes='registration-form' ref='form' id='registration-form' onSubmit=onSubmit}}
-			{{#each formInputs}}
-				{{{FormInput
-					ref=this.ref
-					label=this.label
-					placeholder=this.placeholder
-					classes='registration-form__item'
-					name=@key
-					type=this.type
-					validator=this.validator
-					error=this.error
-				}}}
-			{{/each}}
-			<div class='registration-form__item form-buttons'>
-				{{#Button}}Зарегистироваться{{/Button}}
-				{{#Link
-					href='/src/pages/login/login.html' onClick=goToPage
-				}}
-					Войти
-				{{/Link}}
-			</div>
-		{{/Form}}
+		{{{ ComplexForm id='login-form' formInputs=formInputs onFormSubmit=onFormSubmit submitButtonTitle="Зарегистрироваться" }}}
+		<div class="form-link">
+			{{#Link onClick=goToLoginPage }}
+				Войти
+			{{/Link}}
+		</div>
 	{{/Card}}
 {{/PageOverlay}}

@@ -1,27 +1,10 @@
 {{#PageOverlay}}
 	{{#Card title='Авторизация'}}
-		{{#Form classes='login-form' ref='form' id='login-form' onSubmit=onSubmit onFocusout=onFocusout }}
-			{{#each formInputs}}
-				{{{FormInput
-					ref=this.ref
-					label=this.label
-					placeholder=this.placeholder
-					classes='login-form__item'
-					name=@key
-					type=this.type
-					validator=this.validator
-					error=this.error
-					showError=this.showError
-				}}}
-			{{/each}}
-			<div class='login-form__item form-buttons'>
-				{{#Button}}Войти{{/Button}}
-				{{#Link
-					href='/src/pages/registration/registration.html' onClick=goToPage
-				}}
-					Нет аккаунта?
-				{{/Link}}
-			</div>
-		{{/Form}}
+		{{{ ComplexForm id='login-form' formInputs=formInputs onFormSubmit=onFormSubmit submitButtonTitle="Войти" }}}
+		<div class="form-link">
+			{{#Link onClick=goToRegistrationPage }}
+				Нет аккаунта?
+			{{/Link}}
+		</div>
 	{{/Card}}
 {{/PageOverlay}}

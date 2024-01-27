@@ -1,7 +1,9 @@
 import { Block } from '../../../utils/Block'
-import { renderDOM } from '../../../utils/renderDOM'
 import template from './settings-overlay.hbs'
+import { router } from '../../../router/Router'
 import './settings-overlay.scss'
+import { authController } from '../../../controllers/AuthController'
+import { withStore } from '../../../store/Store'
 
 type SettingsOverlayProps = {
 	username: string
@@ -9,19 +11,19 @@ type SettingsOverlayProps = {
 	closeOverlayHandle: () => void
 }
 
-export class SettingsOverlay extends Block {
+export class SettingsOverlayBase extends Block {
 	constructor (props: SettingsOverlayProps) {
 		super({
 			...props,
 			closeOverlayHandle: props.closeOverlayHandle,
 			changeUserDataHandle: () => {
-				renderDOM('profileSettings')
+				router.go('/settings')
 			},
 			changeUserPasswordHandle: () => {
-				renderDOM('proflieChangePassword')
+				router.go('/change-password')
 			},
-			changeExitHandle: () => {
-				renderDOM('login')
+			logout: () => {
+				authController.logout()
 			}
 		})
 	}
@@ -30,3 +32,10 @@ export class SettingsOverlay extends Block {
 		return this.compile(template, this.props)
 	}
 }
+
+const withUser = withStore((state) => ({
+	username: `${ state.user?.first_name } ${ state.user?.second_name }`,
+	imgSrc: state.user?.avatar
+}))
+
+export const SettingsOverlay = withUser(SettingsOverlayBase)

@@ -1,0 +1,49 @@
+@import '/src/utils/variables';
+
+.chat-users {
+	height: 100%;
+	width: 400px;
+	background-color: $white-color;
+	border-left: 1px solid $gray-color;
+
+	&__header {
+		height: 90px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border-bottom: 1px solid $gray-color;
+	}
+}
+
+.add-users-block {
+	padding: 20px;
+		display: flex;
+		align-items: center;
+		gap: 10px;
+
+		&__input {
+			flex-grow: 1;
+		}
+}
+
+.users-list {
+	overflow-y: auto;
+	padding: 0 20px;
+
+	&__item {
+		display: flex;
+		align-items: center;
+		margin-bottom: 10px;
+		gap: 10px;
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+}
+
+.users-list-item {
+	&__name {
+		flex-grow: 1;
+	}
+}

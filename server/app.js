@@ -1,10 +1,14 @@
 import express from 'express'
 import { resolve } from 'path'
+import fallback from 'express-history-api-fallback'
 
 const PORT = 3000
 
 const app = express()
-app.use('/', express.static(resolve('dist')))
+
+const root = resolve('dist')
+app.use('/', express.static(root))
+app.use(fallback('index.html', { root }))
 
 app.listen(PORT, () => {
 	console.log('Server is started')

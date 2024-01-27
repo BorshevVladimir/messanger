@@ -1,13 +1,14 @@
 import { Block } from '../../utils/Block'
 import template from './login.hbs'
-import './login.scss'
 import { InputValidator } from '../../utils/InputValidator'
-import { renderDOM } from '../../utils/renderDOM'
-import type { FormInput } from '../../typings/FormInput'
-import { formSubmit } from '../../utils/formSubmit'
-const formInputs: Record<string, FormInput> = {
+import type { FormErrorDescription, FormTextField } from '../../typings'
+import { router } from '../../router/Router'
+import { authController } from '../../controllers/AuthController'
+import type { SigninRequestData } from '../../api/AuthApi'
+import { Indexed } from '../../utils/isObject'
+
+const formInputs: Record<string, FormTextField> = {
 	login: {
-		ref: 'login',
 		label: 'Логин',
 		placeholder: 'Введите логин',
 		error: 'Ошибка в логине',
@@ -15,7 +16,6 @@ const formInputs: Record<string, FormInput> = {
 		validator: InputValidator.validateLogin,
 	},
 	password: {
-		ref: 'password',
 		label: 'Пароль',
 		placeholder: 'Введите пароль',
 		error: 'Ошибка в пароле',
@@ -24,15 +24,31 @@ const formInputs: Record<string, FormInput> = {
 	},
 }
 
-export class LoginPage extends Block {
+type LoginPageProps = {
+	formInputs: Record<string, FormTextField>
+	goToRegistrationPage: (e: MouseEvent) => void
+	onFormSubmit: (data: {
+		formValues: Indexed
+		errors: FormErrorDescription[]
+	}) => void
+}
+
+export class LoginPage extends Block<LoginPageProps> {
 	constructor () {
 		super({
 			formInputs,
-			goToPage (e: MouseEvent) {
+			goToRegistrationPage (e: MouseEvent) {
 				e.preventDefault()
-				renderDOM('registration')
+				router.go('/sign-up')
 			},
-			onSubmit: (e: SubmitEvent) => formSubmit(e, formInputs, this.refs)
+			onFormSubmit: (data: {
+				formValues: Indexed
+				errors: FormErrorDescription[]
+			}) => {
+				if (data.errors.length === 0) {
+					authController.signin(data.formValues as SigninRequestData)
+				}
+			},
 		})
 	}
 

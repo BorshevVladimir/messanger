@@ -6,19 +6,17 @@ import { TemplateDelegate } from 'handlebars'
 
 type Children = Record<string, Block | Block[]>
 
-type Props = {
-	childrens?: Block | Block[] | string
-	events?: Record<string, (e: Event) => void>
-	[key: string]: unknown
+export interface BlockConstructable<P extends Record<string, any> = any> {
+	new(props: P): Block<P>
 }
 
-export class Block {
+export abstract class Block<Props extends Record<string, any> = any> {
 	static EVENTS = {
 		INIT: 'init',
 		FLOW_CDM: 'flow:component-did-mount',
 		FLOW_RENDER: 'flow:render',
 		FLOW_CDU: 'flow:component-did-update'
-	}
+	} as const
 
 	protected props: Props
 	private readonly _eventBus: EventBus
@@ -30,9 +28,8 @@ export class Block {
 
 	private _element: HTMLElement | null = null
 
-	constructor (propsWithChildren: Props = {}) {
+	constructor (propsWithChildren: Props = {} as Props) {
 		const { props, children } = this._getChildrenAndProps(propsWithChildren)
-
 		this.children = children
 
 		this.id = generateUniqueId()
@@ -106,13 +103,9 @@ export class Block {
 		return this._element
 	}
 
-	get references () {
-		return this.refs
-	}
-
 	private _getChildrenAndProps (propsWithChildren: Props) {
 		const children: Children = {}
-		const props: Omit<Props, 'children'> = {}
+		const props = {} as Props
 
 		Object.entries(propsWithChildren).forEach(([key, value]) => {
 			if (
@@ -121,7 +114,7 @@ export class Block {
 			) {
 				children[key] = value
 			} else {
-				props[key] = value
+				props[key as keyof Props] = value
 			}
 		})
 
@@ -163,6 +156,7 @@ export class Block {
 	}
 
 	private _addEvents (): void {
+		this.props.events
 		const { events } = this.props
 		if (!events) {
 			return
@@ -193,7 +187,7 @@ export class Block {
 			},
 			set (target, prop, value) {
 				const oldTarget = deepClone(target)
-				target[prop as string] = value
+				target[prop as keyof Props] = value
 
 				self._eventBus.emit(Block.EVENTS.FLOW_CDU, oldTarget, target)
 				return true
@@ -211,7 +205,6 @@ export class Block {
 	hide () {
 		this.getContent()!.style.display = 'none'
 	}
-
 	showToggle () {
 		if (this.getContent()!.style.display === 'block') {
 			this.getContent()!.style.display = 'none'

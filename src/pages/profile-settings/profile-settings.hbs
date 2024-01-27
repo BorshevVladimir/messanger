@@ -1,32 +1,15 @@
 {{#PageOverlay}}
 	{{#Card title='Настройка профиля'}}
-	{{#Form classes='user-settings-form' ref='form' id='profile-settings-form' onSubmit=onSubmit onFocusout=onFocusout }}
-		<div class="user-settings-form__avatar">
-			{{{ Avatar big=true src="https://allods.mail.ru/forums/image.php?u=309803&dateline=1478711553" }}}
-		</div>
-		{{#each formInputs}}
-			{{{FormInput
-				ref=this.ref
-				label=this.label
-				placeholder=this.placeholder
-				classes='user-settings-form__item'
-				name=@key
-				type=this.type
-				validator=this.validator
-				error=this.error
-				showError=this.showError
-			}}}
-		{{/each}}
-
-		<div class="user-settings-form__item form-buttons">
-			{{#Button}}Сохранить{{/Button}}
-			{{#Link
-				href='/' onClick=goToPage
-			}}
+	<div class="user-settings-form__avatar">
+		{{#UploadFile name='avatar' onSelect=onAvatarChange accept='image/*' }}
+			{{{ Avatar big=true src=avatar }}}
+		{{/UploadFile }}
+	</div>
+	{{{ ComplexForm id='login-form' formInputs=formInputs onFormSubmit=onFormSubmit submitButtonTitle="Сохранить" }}}
+	<div class="form-link">
+			{{#Link onClick=goToChatPage }}
 				Назад
 			{{/Link}}
-			</div>
-
-		{{/Form}}
+		</div>
 	{{/Card}}
 {{/PageOverlay}}

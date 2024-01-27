@@ -1,14 +1,15 @@
 import { Block } from '../../utils/Block'
 import template from './registration.hbs'
 import { InputValidator } from '../../utils/InputValidator'
-import { renderDOM } from '../../utils/renderDOM'
-import type { FormInput } from '../../typings/FormInput'
+import type { FormTextField, FormErrorDescription } from '../../typings'
 import './registration.scss'
-import { formSubmit } from '../../utils/formSubmit'
+import { router } from '../../router/Router'
+import { authController } from '../../controllers/AuthController'
+import type { SignupRequestData } from '../../api/AuthApi'
+import { Indexed } from '../../utils/isObject'
 
-const formInputs: Record<string, FormInput> = {
+const formInputs: Record<string, FormTextField> = {
 	email: {
-		ref: 'email',
 		label: 'Почта',
 		placeholder: 'Введите электронную почту',
 		error: 'Неподходящий email',
@@ -16,7 +17,6 @@ const formInputs: Record<string, FormInput> = {
 		validator: InputValidator.validateEmail,
 	},
 	login: {
-		ref: 'login',
 		label: 'Логин',
 		placeholder: 'Введите логин',
 		error: 'Неподходящий логин',
@@ -24,7 +24,6 @@ const formInputs: Record<string, FormInput> = {
 		validator: InputValidator.validateLogin,
 	},
 	first_name: {
-		ref: 'name',
 		label: 'Имя',
 		placeholder: 'Введите имя',
 		error: 'Неподходящее имя',
@@ -32,7 +31,6 @@ const formInputs: Record<string, FormInput> = {
 		validator: InputValidator.validateName,
 	},
 	second_name: {
-		ref: 'second_name',
 		label: 'Фамилия',
 		placeholder: 'Введите фамилию',
 		error: 'Неподходящая фамилии',
@@ -40,7 +38,6 @@ const formInputs: Record<string, FormInput> = {
 		validator: InputValidator.validateName,
 	},
 	phone: {
-		ref: 'phone',
 		label: 'Телефон',
 		placeholder: 'Введите телефон',
 		error: 'Неподходящий телефон',
@@ -48,7 +45,6 @@ const formInputs: Record<string, FormInput> = {
 		validator: InputValidator.validatePhone,
 	},
 	password: {
-		ref: 'password',
 		label: 'Пароль',
 		placeholder: 'Введите пароль',
 		error: 'Неподходящий пароль',
@@ -56,7 +52,6 @@ const formInputs: Record<string, FormInput> = {
 		validator: InputValidator.validatePassword,
 	},
 	password_repeat: {
-		ref: 'password_repeat',
 		label: 'Пароль (еще раз)',
 		placeholder: 'Повторите ввод пароля',
 		error: 'Неподходящий пароль',
@@ -69,11 +64,15 @@ export class RegistrationPage extends Block {
 	constructor () {
 		super({
 			formInputs,
-			goToPage (e: MouseEvent) {
+			goToLoginPage (e: MouseEvent) {
 				e.preventDefault()
-				renderDOM('login')
+				router.go('/')
 			},
-			onSubmit: (e: SubmitEvent) => formSubmit(e, formInputs, this.refs)
+			onFormSubmit: (data: { formValues: Indexed, errors: FormErrorDescription[] }) => {
+				if (data.errors.length === 0) {
+					authController.signup(data.formValues as SignupRequestData)
+				}
+			}
 		})
 	}
 

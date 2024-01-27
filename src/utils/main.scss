@@ -6,13 +6,11 @@
 	box-sizing: border-box;
 }
 
-body {
+.body {
 	font-family: Inter, sans-serif;
 }
 
-.form-buttons {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	gap: 10px;
+.form-link {
+	margin-top: 10px;
+	text-align: center;
 }

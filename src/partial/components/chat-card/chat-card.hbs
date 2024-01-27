@@ -1,0 +1,20 @@
+<div class='chat-card {{#if isSelected}}chat-card_selected{{/if}}'>
+	{{{Avatar src=avatarSrc alt=avatarAlt}}}
+
+	<div class='chat-card__text'>
+		<div class='chat-card__title'>
+			{{title}}
+		</div>
+
+		<div class='chat-card__message'>
+			{{lastMessage}}
+		</div>
+	</div>
+
+	<div class='chat-card__statistic'>
+		<span class='last-message-time'>
+			{{lastMessageTime}}
+		</span>
+		{{!-- {{{Badge text=messageCount}}} --}}
+	</div>
+</div>

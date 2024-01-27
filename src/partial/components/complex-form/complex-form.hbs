@@ -1,0 +1,25 @@
+{{#Form onSubmit=onSubmit classes='complex-form' id=id }}
+	{{#each formInputs}}
+		{{{FormInput
+					ref=@key
+					label=this.label
+					placeholder=this.placeholder
+					classes='complex-form__item'
+					name=@key
+					type=this.type
+					validator=this.validator
+					error=this.error
+					showError=this.showError
+					value=this.value
+				}}}
+	{{/each}}
+	<div class='complex-form__submit'>
+		{{#Button}}
+			{{#if submitButtonTitle}}
+				{{ submitButtonTitle }}
+				{{ else }}
+				Отправить
+			{{/if }}
+		{{/Button}}
+	</div>
+{{/Form}}

@@ -2,13 +2,14 @@ import { Block } from '../../utils/Block'
 import template from './profile-change-password.hbs'
 import './profile-change-password.scss'
 import { InputValidator } from '../../utils/InputValidator'
-import { formSubmit } from '../../utils/formSubmit'
-import type { FormInput } from '../../typings/FormInput'
-import { renderDOM } from '../../utils/renderDOM'
+import type { FormTextField, FormErrorDescription } from '../../typings'
+import { router } from '../../router/Router'
+import { userController } from '../../controllers/UserController'
+import type { ChangePasswordRequestData } from '../../api/UserApi'
+import { Indexed } from '../../utils/isObject'
 
-const formInputs: Record<string, FormInput> = {
+const formInputs: Record<string, FormTextField> = {
 	old_password: {
-		ref: 'password',
 		label: 'Старый пароль',
 		placeholder: 'Введите старый пароль',
 		error: 'Неподходящий пароль',
@@ -16,7 +17,6 @@ const formInputs: Record<string, FormInput> = {
 		validator: InputValidator.validatePassword,
 	},
 	password: {
-		ref: 'password',
 		label: 'Новый пароль',
 		placeholder: 'Введите новый пароль',
 		error: 'Неподходящий пароль',
@@ -24,7 +24,6 @@ const formInputs: Record<string, FormInput> = {
 		validator: InputValidator.validatePassword,
 	},
 	password_repeat: {
-		ref: 'password_repeat',
 		label: 'Новый пароль (еще раз)',
 		placeholder: 'Повторите ввод пароля',
 		error: 'Неподходящий пароль',
@@ -37,11 +36,22 @@ export class ProfileChangePasswordPage extends Block {
 	constructor () {
 		super({
 			formInputs,
-			goToPage (e: MouseEvent) {
+			goToChatPage (e: MouseEvent) {
 				e.preventDefault()
-				renderDOM('chat')
+				router.go('/messenger')
 			},
-			onSubmit: (e: SubmitEvent) => formSubmit(e, formInputs, this.refs)
+			onFormSubmit: (data: { formValues: Indexed, errors: FormErrorDescription[] }) => {
+				const { old_password: oldPassword, password: newPassword, password_repeat: passwordRepeat } = data.formValues
+
+				if (newPassword !== passwordRepeat) {
+					alert('Пароли не совпадают')
+					return
+				}
+
+				if (data.errors.length === 0) {
+					userController.chagePassword({ oldPassword, newPassword } as ChangePasswordRequestData)
+				}
+			}
 		})
 	}
 	render () {

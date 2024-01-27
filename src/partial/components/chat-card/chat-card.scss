@@ -1,0 +1,49 @@
+@import "/src/utils/variables";
+
+.chat-card {
+	display: flex;
+	gap: 13px;
+	padding: 10px 15px;
+	border-bottom: 1px solid $gray-color;
+
+	&__text {
+		flex-grow: 1
+	}
+
+	&__title {
+		font-size: 14;
+		font-weight: bold;
+	}
+
+	&__message {
+		font-size: 12;
+		color: $dark-gray-color;
+		text-overflow: ellipsis;
+		overflow: hidden !important;
+	}
+
+	&__statistic {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 13px
+	}
+
+	&:hover {
+		background-color: $light-gray-color;
+		cursor: pointer;
+	}
+
+	&_selected {
+		background-color: $gray-color;
+
+		&:hover {
+			background-color: $gray-color;
+		}
+	}
+}
+
+.last-message-time {
+	font-size: 8px;
+	color: $dark-gray-color;
+}
