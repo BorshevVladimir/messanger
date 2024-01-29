@@ -10,6 +10,7 @@
 ![image](https://img.shields.io/badge/Vite-B73BFE?style=for-the-badge&logo=vite&logoColor=FFD62E)
 ![image](https://img.shields.io/badge/Sass-CC6699?style=for-the-badge&logo=sass&logoColor=white)
 ![image](https://img.shields.io/badge/Handlebars%20js-f0772b?style=for-the-badge&logo=handlebarsdotjs&logoColor=black)
+![Mocha](https://img.shields.io/badge/-mocha-%238D6748?style=for-the-badge&logo=mocha&logoColor=white)
 
 ## Установка проекта
 Для запуска у вас должна быть уставновлн Nodejs версии >= 20.10.0
@@ -64,3 +65,9 @@ npm run start
 npm run build
 ```
 После выполнения команды сборка будет сохранена в папку dist.
+
+## Запуск тестов
+Команда для запуска тестов:
+```shell
+npm run test
+```
