@@ -21,6 +21,7 @@
     "chai": "^5.0.3",
     "create-esm-loader": "^0.2.5",
     "eslint": "^8.55.0",
+    "esm-loader-css": "^1.0.6",
     "esm-loader-typescript": "^1.0.6",
     "esmock": "^2.6.3",
     "mocha": "^10.2.0",
