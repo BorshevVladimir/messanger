@@ -11,13 +11,14 @@
     "stylelint": "npx stylelint \"**/*.scss\"",
     "type-check": "tsc --noEmit",
     "preview": "vite preview",
-    "test": "mocha"
+    "test": "mocha",
+    "prepare": "husky"
   },
-	"husky": {
-		"hooks": {
-			"pre-commit": "npm run test && npm run type-check && npm run stylelint"
-		}
-	},
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run test npm run type-check  npm run stylelint"
+    }
+  },
   "devDependencies": {
     "@types/chai": "^4.3.11",
     "@types/mocha": "^10.0.6",
