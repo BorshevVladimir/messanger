@@ -36,6 +36,7 @@ class Router {
 		})
 
 		this._onRoute(window.location.pathname)
+		return this
 	}
 
 	private _onRoute (pathname: string) {
