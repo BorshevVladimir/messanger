@@ -31,7 +31,7 @@ const hbsLoader = {
 
 		const result = `
 			import Handlebars from 'handlebars'
-			export default Handlebars.template(${Handlebars.precompile(source)})
+			export default Handlebars.template(${Handlebars.precompile(String(source))})
 		`
 
 		return { source: result }
@@ -39,5 +39,5 @@ const hbsLoader = {
 }
 
 export default {
-	loaders: [hbsLoader, 'esm-loader-typescript', 'esm-lodaer-css'],
+	loaders: [hbsLoader, 'esm-loader-typescript', 'esm-loader-css'],
 }
