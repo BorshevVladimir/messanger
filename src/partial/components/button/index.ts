@@ -1,9 +1,9 @@
-import { Block } from '../../../utils/Block'
+import { Block } from '../../../utils/Block.ts'
 import template from './button.hbs'
 import './button.scss'
 
 type ButtonProps = {
-	type: 'submit' | 'button'
+	danger?: boolean
 	onClick: () => void
 }
 
