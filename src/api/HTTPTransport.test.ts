@@ -13,7 +13,7 @@ describe('HTTPTransport', () => {
 	beforeEach(() => {
 		xhr = sinon.useFakeXMLHttpRequest()
 
-		global.XMLHttpRequest = xhr
+		global.XMLHttpRequest = xhr as any
 
 		instance = new HTTPTransport('/auth')
 
