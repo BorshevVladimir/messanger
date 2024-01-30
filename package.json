@@ -16,7 +16,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run test npm run type-check  npm run stylelint"
+      "pre-commit": " npm run type-check && npm run test && npm run stylelint && npm run lint"
     }
   },
   "devDependencies": {
