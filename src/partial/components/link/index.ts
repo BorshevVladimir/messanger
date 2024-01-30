@@ -1,12 +1,11 @@
-import { Block } from '../../../utils/Block'
+import { Block } from '../../../utils/Block.ts'
 import template from './link.hbs'
 import './link.scss'
 
 type LinkProps = {
-	onClick: () => void
-	events: {
-		click: () => void
-	}
+	error?: boolean
+	href: string
+	onClick?: () => void
 }
 
 export class Link extends Block {

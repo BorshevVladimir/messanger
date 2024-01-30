@@ -1,7 +1,6 @@
-import { Block } from '../utils/Block'
-import { deepEqual } from '../utils/deepEqual'
-import { renderDOM } from '../utils/renderDOM'
-import type { BlockConstructable } from '../utils//Block'
+import { Block, BlockConstructable } from '../utils/Block.ts'
+import { deepEqual } from '../utils/deepEqual.ts'
+import { renderDOM } from '../utils/renderDOM.ts'
 
 type Pathname = string
 

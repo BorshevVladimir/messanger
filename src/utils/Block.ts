@@ -1,7 +1,7 @@
-import { EventBus } from './EventBus'
-import { deepEqual } from './deepEqual'
-import { deepClone } from './deepClone'
-import { type UniqueId, generateUniqueId } from './generateUniqueId'
+import { EventBus } from './EventBus.ts'
+import { deepEqual } from './deepEqual.ts'
+import { deepClone } from './deepClone.ts'
+import { type UniqueId, generateUniqueId } from './generateUniqueId.ts'
 import { TemplateDelegate } from 'handlebars'
 
 type Children = Record<string, Block | Block[]>
@@ -140,7 +140,6 @@ export abstract class Block<Props extends Record<string, any> = any> {
 	private _render () {
 		const fragment = this.render()
 		const newElement = fragment.firstElementChild as Element
-
 		if (this._element) {
 			this._element.replaceWith(newElement)
 		}
@@ -199,17 +198,21 @@ export abstract class Block<Props extends Record<string, any> = any> {
 	}
 
 	show () {
-		this.getContent()!.style.display = 'block'
+		if (this._element) {
+			this._element.style.display = 'block'
+		}
 	}
 
 	hide () {
-		this.getContent()!.style.display = 'none'
+		if (this._element) {
+			this._element.style.display = 'none'
+		}
 	}
+
 	showToggle () {
-		if (this.getContent()!.style.display === 'block') {
-			this.getContent()!.style.display = 'none'
-		} else {
-			this.getContent()!.style.display = 'block'
+		if (this._element) {
+			const currnetStyle = this._element.style.display
+			this._element.style.display = currnetStyle === 'block' ? 'none' : 'block'
 		}
 	}
 }

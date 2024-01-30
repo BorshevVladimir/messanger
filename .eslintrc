@@ -17,5 +17,9 @@
 		"eol-last": ["error", "always"],
 		"semi": ["error", "never"],
 		"@typescript-eslint/no-this-alias": "off"
+	},
+	"env": {
+    "browser": true,
+    "node": true
 	}
 }

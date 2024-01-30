@@ -24,9 +24,8 @@ function queryStringify (data: OptionsData) {
 function request<TResponse> (
 	url: string,
 	options: Options = { method: Method.GET },
-	timeout = 5000
 ): Promise<TResponse> {
-	const { method, data = {}, headers = {} } = options
+	const { method, data = {}, headers = {}, timeout = 5000 } = options
 
 	const isGet = method === Method.GET
 
@@ -84,35 +83,31 @@ export class HTTPTransport {
 		this.endpoint = `${HTTPTransport.BASE_URL}${endpoint}`
 	}
 
-	get: RequestFn = (url: string, options?: OptionsWithoutMethod) => {
+	get: RequestFn = (url, options) => {
 		return request(
 			this.endpoint + url,
 			{ ...options, method: Method.GET },
-			options?.timeout
 		)
 	}
 
-	put: RequestFn = (url: string, options: OptionsWithoutMethod) => {
+	put: RequestFn = (url, options) => {
 		return request(
 			this.endpoint + url,
 			{ ...options, method: Method.PUT },
-			options.timeout
 		)
 	}
 
-	post: RequestFn = (url: string, options?: OptionsWithoutMethod) => {
+	post: RequestFn = (url, options) => {
 		return request(
 			this.endpoint + url,
 			{ ...options, method: Method.POST },
-			options?.timeout
 		)
 	}
 
-	delete: RequestFn = (url: string, options: OptionsWithoutMethod) => {
+	delete: RequestFn = (url, options) => {
 		return request(
 			this.endpoint + url,
 			{ ...options, method: Method.DELETE },
-			options.timeout
 		)
 	}
 }

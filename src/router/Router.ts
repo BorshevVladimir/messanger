@@ -1,8 +1,8 @@
-import { Route } from './Route'
-import { Block, type BlockConstructable } from '../utils/Block'
+import { Route } from './Route.ts'
+import { type BlockConstructable } from '../utils/Block.ts'
 
 class Router {
-	private static __instance: Router
+	private static __instance?: Router
 	public routes: Route[] = []
 	public history = window.history
 	private _currentRoute: Route | null = null
@@ -24,7 +24,7 @@ class Router {
 		return this
 	}
 
-	useNotFound (block: new () => Block) {
+	useNotFound (block: BlockConstructable) {
 		this._notFoundRoute = new Route('', block, { rootQuery: this._rootQuery })
 		return this
 	}
@@ -36,6 +36,7 @@ class Router {
 		})
 
 		this._onRoute(window.location.pathname)
+		return this
 	}
 
 	private _onRoute (pathname: string) {
@@ -64,6 +65,11 @@ class Router {
 
 	private _getRoute (pathname: string) {
 		return this.routes.find((route) => route.match(pathname))
+	}
+
+	public reset () {
+		delete Router.__instance
+		new Router(this._rootQuery)
 	}
 }
 
